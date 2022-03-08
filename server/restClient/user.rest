@@ -1,0 +1,29 @@
+GET http://localhost:5000/api/users
+
+###
+
+GET http://localhost:5000/api/users/622673044ed2979235e0ce37
+
+###
+
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+    "username": "user1",
+    "password": "password"
+}
+
+###
+PUT http://localhost:5000/api/users/62267c4fdab98b394e239fdd
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWQiOiI2MjI2N2M0ZmRhYjk4YjM5NGUyMzlmZGQiLCJpYXQiOjE2NDY2OTI2NTMsImV4cCI6MTY0NjY5MjcxM30.HB0oV0kmgVilAWAfWOjlurR78eJ0GMJPUt5b1tQ2lOQ
+
+{
+    "username": "newuser",
+    "password": "dfewfewf"
+}
+
+###
+
+DELETE http://localhost:5000/api/users/622673044ed2979235e0ce37
