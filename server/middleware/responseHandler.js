@@ -23,8 +23,12 @@ const errorHandler = (err, _, res, next) => {
         if (err.message.includes("invalid signature")) {
             return res.status(401).json({ err: "Unauthorized. Invalid user" })
         }
-    } if (err.name === "TokenExpiredError") {
+    } else if (err.name === "TokenExpiredError") {
         return res.status(401).json({ err: "Unauthorized. Token expired" }) 
+    } else if (err.name === "MongoServerError") {
+        if (err.message.includes("duplicate key error")) {
+            return res.status(401).json({ err: "Error. Duplicated" }) 
+        }
     }
 
     next(err)
@@ -33,6 +37,10 @@ const errorHandler = (err, _, res, next) => {
 const successHandler = (res, data, code, message) => {
     if (!message) { 
         message = "Successful operation" 
+    }
+
+    if (!data) {
+        res.status(code).end()
     }
 
     logger.info(message)

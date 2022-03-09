@@ -1,0 +1,27 @@
+GET http://localhost:5000/api/categories
+
+###
+
+GET http://localhost:5000/api/categories/6228b64e3c80aabf408645cb
+
+### 
+
+POST http://localhost:5000/api/categories
+Content-Type: application/json 
+
+{
+    "name": "General"
+}
+
+### 
+
+PUT http://localhost:5000/api/categories/6228b64e3c80aabf408645cb
+Content-Type: application/json 
+
+{
+    "name": "Payment"
+}
+
+###
+
+DELETE http://localhost:5000/api/categories/6228b62c3c80aabf408645c6

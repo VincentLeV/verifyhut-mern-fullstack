@@ -23,4 +23,4 @@ signatureSchema.set( "toJSON", {
     }
 })
 
-module.exports = mongoose.model( "Signature", signatureSchema )
+module.exports = mongoose.model( "Category", signatureSchema )

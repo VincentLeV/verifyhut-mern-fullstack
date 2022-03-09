@@ -5,19 +5,20 @@ const signatureSchema = new mongoose.Schema({
         type: Buffer,
         required: true
     },
+    signer_name: {
+        type: String,
+        required: true
+    },
     reason: String,
-    category: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Category"
-        }
-    ],
-    user: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
-        }
-    ]
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Category"
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User"
+    }
 }, { timestamps: true })
 
 signatureSchema.set( "toJSON", {

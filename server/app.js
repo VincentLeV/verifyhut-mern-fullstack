@@ -10,8 +10,10 @@ const {
 } = require( "./middleware" )
 const logger = require( "./utils/logger" )
 const mongoose = require( "mongoose" )
-const userRouter = require( "./controllers/users.js" )
-const loginRouter = require("./controllers/login.js")
+const userRouter = require( "./controllers/users" )
+const loginRouter = require("./controllers/login")
+const categoryRouter = require("./controllers/categories")
+const signatureRouter = require("./controllers/signatures")
 
 logger.info( "Connecting to", config.MONGODB_URI )
 
@@ -26,6 +28,8 @@ app.use(requestLogger)
 
 app.use( "/api/users", userRouter )
 app.use( "/api/login", loginRouter )
+app.use( "/api/categories", categoryRouter )
+app.use( "/api/signatures", signatureRouter )
 
 app.get( "/", (req, res) => {
     res.send("Server is running")

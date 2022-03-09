@@ -5,12 +5,12 @@ const { successHandler, tokenExtractor } = require("../middleware")
 const { encryptPassword } = require("../utils/helpers")
 
 userRouter.get("/", async (_, res) => {
-    const users = await User.find({})
+    const users = await User.find({}).populate( "signatures", {image: 1, reason: 1, category: 1} )
     successHandler(res, users, 200)
 })
 
 userRouter.get("/:id", async (req, res, next) => {
-    const user = await User.findById(req.params.id)
+    const user = await User.findById(req.params.id).populate( "signatures", {image: 1, reason: 1, category: 1} )
     user ? successHandler(res, user, 200) : next(new Error("not found"))
 })
 
