@@ -16,6 +16,12 @@ const userSchema = new mongoose.Schema({
             ref: "Signature"
         }
     ],
+    categories: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Category"
+        }
+    ],
 })
 
 userSchema.plugin(uniqueValidator)

@@ -16,27 +16,30 @@ signatureRouter.get("/:id", async (req, res, next) => {
 
 signatureRouter.post("/", tokenExtractor, async (req, res, next) => {
     const user = await User.findById( req.decodedToken.id )
-    let category
-    if (req.body.category) {
-        category = await Category.findById(req.body.category)
-        if (!category) next(new Error("not found"))
-    }
-    
     if (!user) next(new Error("not found"))
 
+    let category
     const signature = new Signature({ 
         image: req.body.image,
         signer_name: req.body.signer_name,
         reason: req.body.reason,    
-        category: category.id,
         user: user.id
     })
 
+    if (req.body.category) {
+        category = await Category.findById(req.body.category)
+        if (!category) next(new Error("not found"))
+        signature.category = category.id
+    }
+
     const savedSignature = await signature.save()
     user.signatures = await user.signatures.concat(savedSignature._id)
-    category.signatures = await category.signatures.concat(savedSignature._id)
+    if (req.body.category) {
+        category.signatures = await category.signatures.concat(savedSignature._id)
+        await category.save()
+    }
+    
     await user.save()
-    await category.save()
     savedSignature ? successHandler(res, savedSignature, 201) : next(new Error("can't save to db")) 
 })
 
@@ -57,7 +60,7 @@ signatureRouter.delete("/:id", tokenExtractor, async (req, res, next) => {
         await category.save()
         return res.status(204).end()
     } else {
-        return next(new Error("not found"))
+        return next(new Error("invalid signature"))
     } 
 })
 

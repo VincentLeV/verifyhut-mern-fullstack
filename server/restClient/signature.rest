@@ -8,14 +8,12 @@ GET http://localhost:5000/api/signatures
 
 POST http://localhost:5000/api/signatures
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWQiOiI2MjI4YzQ4ZjU5ZjllMmMzMzU2YWI3MjUiLCJpYXQiOjE2NDY4Mzg5NDB9.fSsPGPRNoK45zhAMVuPTTBoot3KR2cLkpqV15OXfFqc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWQiOiI2MjJhMDE1NmNiN2MwYTY4YTAwMzVmMzYiLCJpYXQiOjE2NDY5NDQwMjR9.w68BpIPg2hxGFgszR-SUs0QbDR8KuWoGhJEZUyK4mHs
 
 {
     "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD",
     "signer_name": "Vincent Le",
-    "reason": "Buy coffee machine",
-    "category": "6228be20c3874f349a3315b6",
-    "user": "62267c4fdab98b394e239fdd"
+    "reason": "Buy coffee machine"
 }
 
 ### 

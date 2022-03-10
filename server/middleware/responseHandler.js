@@ -5,9 +5,11 @@ const errorHandler = (err, _, res, next) => {
 
     if ( err.name === "CastError" ) {
         return res.status(400).send({ err: "Malformatted Id" })
-    } else if ( err.name === "ValidationError" ) {
+    } 
+    if ( err.name === "ValidationError" ) {
         return res.status(400).json({ err: err.message })
-    } else if (err.name === "Error") {
+    } 
+    if (err.name === "Error") {
         if (err.message.includes("data and salt")) {
             return res.status(400).json({ err: "Error. Password is not defined"})
         } else if (err.message.includes("password is too short")) {
@@ -19,15 +21,18 @@ const errorHandler = (err, _, res, next) => {
         } else if (err.message.includes("unauthorize")) {
             return res.status(401).json({ err: "Unauthorized. Invalid username or password"})
         }
-    } else if (err.name === "JsonWebTokenError") {
+    } 
+    if (err.name === "JsonWebTokenError") {
         if (err.message.includes("invalid signature")) {
             return res.status(401).json({ err: "Unauthorized. Invalid user" })
         }
-    } else if (err.name === "TokenExpiredError") {
+    } 
+    if (err.name === "TokenExpiredError") {
         return res.status(401).json({ err: "Unauthorized. Token expired" }) 
-    } else if (err.name === "MongoServerError") {
+    } 
+    if (err.name === "MongoServerError") {
         if (err.message.includes("duplicate key error")) {
-            return res.status(401).json({ err: "Error. Duplicated" }) 
+            return res.status(400).json({ err: "Error. Duplicated" }) 
         }
     }
 

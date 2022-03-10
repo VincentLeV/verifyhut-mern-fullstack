@@ -8,6 +8,7 @@ GET http://localhost:5000/api/categories/6228b64e3c80aabf408645cb
 
 POST http://localhost:5000/api/categories
 Content-Type: application/json 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWQiOiI2MjJhMDE1NmNiN2MwYTY4YTAwMzVmMzYiLCJpYXQiOjE2NDY5MjAwMzR9.e2Gxtm76FZOqSu1aT9RlJ5Tq4YHmM5Nixsy23tJCT70
 
 {
     "name": "General"
@@ -15,13 +16,15 @@ Content-Type: application/json
 
 ### 
 
-PUT http://localhost:5000/api/categories/6228b64e3c80aabf408645cb
+PUT http://localhost:5000/api/categories/622a0417a0d9f65382ac1d93
 Content-Type: application/json 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWQiOiI2MjJhMDE1NmNiN2MwYTY4YTAwMzVmMzYiLCJpYXQiOjE2NDY5MjAwMzR9.e2Gxtm76FZOqSu1aT9RlJ5Tq4YHmM5Nixsy23tJCT70
 
 {
-    "name": "Payment"
+    "name": "Networking"
 }
 
 ###
 
-DELETE http://localhost:5000/api/categories/6228b62c3c80aabf408645c6
+DELETE http://localhost:5000/api/categories/622a020d999a928ed0f59bfa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWQiOiI2MjJhMDE1NmNiN2MwYTY4YTAwMzVmMzYiLCJpYXQiOjE2NDY5MjAwMzR9.e2Gxtm76FZOqSu1aT9RlJ5Tq4YHmM5Nixsy23tJCT70
