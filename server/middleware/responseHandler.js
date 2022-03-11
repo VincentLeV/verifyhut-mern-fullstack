@@ -4,35 +4,35 @@ const errorHandler = (err, _, res, next) => {
     logger.error( err.message )
 
     if ( err.name === "CastError" ) {
-        return res.status(400).send({ err: "Malformatted Id" })
+        return res.status(400).send({ message: "Malformatted Id" })
     } 
     if ( err.name === "ValidationError" ) {
-        return res.status(400).json({ err: err.message })
+        return res.status(400).json({ message: err.message })
     } 
     if (err.name === "Error") {
         if (err.message.includes("data and salt")) {
-            return res.status(400).json({ err: "Error. Password is not defined"})
+            return res.status(400).json({ message: "Error. Password is not defined"})
         } else if (err.message.includes("password is too short")) {
-            return res.status(400).json({ err: "Error. Password is too short"})
+            return res.status(400).json({ message: "Error. Password is too short"})
         } else if (err.message.includes("not found")) {
-            return res.status(400).json({ err: "Error. Data not found"})
+            return res.status(400).json({ message: "Error. Data not found"})
         } else if (err.message.includes("can't save to db")) {
-            return res.status(400).json({ err: "Error. Data can't be saved to database"})
+            return res.status(400).json({ message: "Error. Data can't be saved to database"})
         } else if (err.message.includes("unauthorize")) {
-            return res.status(401).json({ err: "Unauthorized. Invalid username or password"})
+            return res.status(401).json({ message: "Unauthorized. Invalid username or password"})
         }
     } 
     if (err.name === "JsonWebTokenError") {
         if (err.message.includes("invalid signature")) {
-            return res.status(401).json({ err: "Unauthorized. Invalid user" })
+            return res.status(401).json({ message: "Unauthorized. Invalid user" })
         }
     } 
     if (err.name === "TokenExpiredError") {
-        return res.status(401).json({ err: "Unauthorized. Token expired" }) 
+        return res.status(401).json({ message: "Unauthorized. Token expired" }) 
     } 
     if (err.name === "MongoServerError") {
         if (err.message.includes("duplicate key error")) {
-            return res.status(400).json({ err: "Error. Duplicated" }) 
+            return res.status(400).json({ message: "Error. Duplicated" }) 
         }
     }
 
