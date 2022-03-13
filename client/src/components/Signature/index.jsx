@@ -67,7 +67,7 @@ export default function Signature({ setShowSignBoard }) {
 
             {
                 signature &&
-                <Card sx={{ maxWidth: 345 }}>
+                <Card sx={{ maxWidth: 345, width: 345 }}>
                     <Stack 
                         py={2}
                         px={2}
@@ -91,7 +91,8 @@ export default function Signature({ setShowSignBoard }) {
                     <CardMedia
                         component="img"
                         alt="Signature"
-                        height="240"
+                        height="200"
+                        sx={{ objectFit: "contain" }}
                         image={signature && Buffer.from(signature?.image, "base64").toString()}
                     />
                     <CardContent>

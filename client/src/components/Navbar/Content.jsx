@@ -16,7 +16,7 @@ export default function Content({ setShowSignBoard,setIsOpen }) {
             minWidth={280}
             pt={0.8}
         >
-            <Box px={2} sx={{ overflow: 'auto', height: "78vh", maxHeight: "78vh" }}>
+            <Box px={2} sx={{ overflow: 'auto', minHeight: "60vh", maxHeight: "70vh" }}>
                 <Categories setShowSignBoard={setShowSignBoard} setIsOpen={setIsOpen} />
                 <Uncategorized setShowSignBoard={setShowSignBoard} setIsOpen={setIsOpen} />
             </Box>

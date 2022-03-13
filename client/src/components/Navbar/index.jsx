@@ -32,7 +32,7 @@ export default function Navbar({ setShowSignBoard }) {
     }
 
     return (
-        <Box sx={{ display: "flex", position: "absolute", minHeight: "100vh", maxHeight: "100vh" }}>
+        <Box sx={{ position: "absolute" }}>
             <AppBar 
                 position="fixed" 
                 open={isOpen} 
@@ -51,41 +51,39 @@ export default function Navbar({ setShowSignBoard }) {
                 </Toolbar>
             </AppBar>
 
-            <Box>
-                <SwipeableDrawer
-                    variant="persistent"
-                    anchor="left"
-                    open={isOpen}
-                    onClose={() => setIsOpen(true)}
-                    onOpen={() => setIsOpen(true)}
-                    
-                >
-                    { 
-                        matches &&  
-                        <Stack sx={{ height: "8vh", maxHeight: "8vh" }} >
-                            <AppLogo width={"2.5rem"} margin={"auto"} padding={"1rem 0"} />
-                        </Stack>
-                    }
-
-                    <Stack direction="row" 
-                        alignItems="center" 
-                        justifyContent="space-between" 
-                        pl={2} 
-                        pr={1} 
-                        sx={{ display: matches && "none", height: "7vh", maxHeight: "7vh" }}
-                    >
-                        <AppLogo width={"2.5rem"} margin={"0"} padding={"0"} />
-                        <Box sx={{ textAlign: "right" }} py={1}>
-                            <IconButton onClick={toggleNavbar}>
-                                <ChevronLeftIcon fontSize="large" color="primary" sx={{ display: matches && "none" }} />
-                            </IconButton>
-                        </Box>
+            <SwipeableDrawer
+                variant="persistent"
+                anchor="left"
+                open={isOpen}
+                onClose={() => setIsOpen(true)}
+                onOpen={() => setIsOpen(true)}
+                
+            >
+                { 
+                    matches &&  
+                    <Stack sx={{ height: "8vh", maxHeight: "8vh" }} >
+                        <AppLogo width={"2.5rem"} margin={"auto"} padding={"1rem 0"} />
                     </Stack>
-                    { !matches && <Divider /> }
+                }
 
-                    <Content setShowSignBoard={setShowSignBoard} setIsOpen={setIsOpen} />
-                </SwipeableDrawer>
-            </Box>
+                <Stack direction="row" 
+                    alignItems="center" 
+                    justifyContent="space-between" 
+                    pl={2} 
+                    pr={1} 
+                    sx={{ display: matches && "none", height: "7vh", maxHeight: "7vh" }}
+                >
+                    <AppLogo width={"2.5rem"} margin={"0"} padding={"0"} />
+                    <Box sx={{ textAlign: "right" }} py={1}>
+                        <IconButton onClick={toggleNavbar}>
+                            <ChevronLeftIcon fontSize="large" color="primary" sx={{ display: matches && "none" }} />
+                        </IconButton>
+                    </Box>
+                </Stack>
+                { !matches && <Divider /> }
+
+                <Content setShowSignBoard={setShowSignBoard} setIsOpen={setIsOpen} />
+            </SwipeableDrawer>
         </Box>
     )
 }
