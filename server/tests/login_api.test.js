@@ -33,7 +33,7 @@ describe( "Login", () => {
             .expect( 401 )
             .expect( "Content-Type", /application\/json/ )
 
-        expect( result.body.err ).toContain( "Invalid username or password" )
+        expect( result.body.message ).toContain( "Invalid username or password" )
     })
 })
 

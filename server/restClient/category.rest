@@ -4,6 +4,10 @@ GET http://localhost:5000/api/categories
 
 GET http://localhost:5000/api/categories/6228b64e3c80aabf408645cb
 
+###
+
+GET http://localhost:5000/api/categories/user/622d14443405373fbf2c734b
+
 ### 
 
 POST http://localhost:5000/api/categories

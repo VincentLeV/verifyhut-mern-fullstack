@@ -81,7 +81,7 @@ describe("Create Signature", () => {
             .expect(401)
             .expect("Content-Type", /application\/json/)
 
-        expect(result.body.err).toEqual("Unauthorized. Invalid username or password")
+        expect(result.body.message).toEqual("Unauthorized. Invalid username or password")
     })
 
     test("creation succeeds with an image & without category", async () => {

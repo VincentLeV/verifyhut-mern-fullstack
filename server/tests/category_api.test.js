@@ -61,7 +61,7 @@ describe("Create Category", () => {
             .expect(401)
             .expect("Content-Type", /application\/json/)
 
-        expect(result.body.err).toEqual("Unauthorized. Invalid username or password")
+        expect(result.body.message).toEqual("Unauthorized. Invalid username or password")
     })
 
     test("creation succeeds with a name", async () => {
@@ -94,7 +94,7 @@ describe("Create Category", () => {
             .expect(400)
             .expect("Content-Type", /application\/json/)
 
-        expect(result.body.err).toContain("Error. Duplicated")
+        expect(result.body.message).toContain("Category validation failed: name: Error, expected `name` to be unique")
 
         const notSavedCategory = await Category.find({})
         expect(notSavedCategory).toHaveLength(categories.length)

@@ -60,7 +60,7 @@ describe("Create Users", () => {
             .expect(400)
             .expect("Content-Type", /application\/json/)
 
-        expect(result.body.err).toContain("`username` to be unique")
+        expect(result.body.message).toContain("`username` to be unique")
 
         const notSavedUser = await User.find({})
         expect(notSavedUser).toHaveLength(users.length)
@@ -81,7 +81,7 @@ describe("Create Users", () => {
             .expect(400)
             .expect("Content-Type", /application\/json/)
 
-        expect(result.body.err).toContain("Error. Password is too short")
+        expect(result.body.message).toContain("Error. Password is too short")
 
         const notSavedUser = await User.find({})
         expect(notSavedUser).toHaveLength(users.length)
@@ -101,7 +101,7 @@ describe("Create Users", () => {
             .send(newUser)
             .expect(400)
 
-        expect(result.body.err).toContain("Password is too short")
+        expect(result.body.message).toContain("Password is too short")
 
         const notSavedUser = await User.find({})
         expect(notSavedUser).toHaveLength(users.length)
@@ -120,7 +120,7 @@ describe("Create Users", () => {
             .send(newUser)
             .expect(400)
 
-        expect(result.body.err).toContain("Password is not defined")
+        expect(result.body.message).toContain("Password is not defined")
 
         const notSavedUser = await User.find({})
         expect(notSavedUser).toHaveLength(users.length)
