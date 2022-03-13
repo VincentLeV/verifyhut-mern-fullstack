@@ -1,18 +1,118 @@
 import React from "react"
-import { Stack, Button } from "@mui/material"
-// import { useSignatures } from "../../context/SignatureContext"
+import { Buffer } from "buffer"
+import { 
+    Stack, 
+    Button, 
+    Typography,
+    Card,
+    CardMedia,
+    CardContent,
+    CardActions,
+    Box,
+    Divider
+} from "@mui/material"
+import { red } from "@mui/material/colors"
+import { useSignatures } from "../../context/SignatureContext"
+import { useCategories } from "../../context/CategoryContext"
+import { useAlert } from "../../context/AlertContext"
+import { useToast } from "../../context/ToastContext"
+import moment from "moment-mini"
+import Close from "@mui/icons-material/Close"
+import { getDataLS } from "../../utils/helpers"
+import Axios from "../../services/axios"
+
+import ActionBar from "./ActionBar"
 
 export default function Signature({ setShowSignBoard }) {
-    // const { signature } = useSignatures()
+    const { signature, setSignature, uncategorized, setUncategorized } = useSignatures()
+    const { category, categories, setCategories } = useCategories()
+    const { isConfirmed } = useAlert()
+    const { setToast } = useToast()
+
+    const handleDeleteSignature = async (e) => {
+        e.preventDefault()
+        const confirmed = await isConfirmed( 
+            "Delete Signature", 
+            `Do you really want to delete signature signed by ${signature?.signer_name}?`
+        )
+        if (confirmed) {
+            try {
+                const token = getDataLS("auth-token")
+                await Axios.deleteSignature(signature?.id, token)
+                if (category) {
+                    const categorySignatures = category?.signatures.filter(x => x.id !== signature.id)
+                    const newCategory = { ...category, signatures: categorySignatures }
+                    const temp = [ ...categories.filter(x => x.id !== category.id), newCategory ]
+                    setCategories(temp)
+                } else {
+                    setUncategorized(uncategorized.filter(x => x.id !== signature.id))
+                }
+                setToast({ isOpen: true, msg: "Successfully deleted signature!" })
+                setSignature(null)
+            } catch (err) {
+                setToast({ isOpen: true, msg: err?.response?.data?.message, severity: "error" })
+            }
+        } 
+    }
 
     return (
-        <Stack alignItems="center" sx={{ height: "100vh" }} mt={10} ml={10}>
-            <p>Signature</p>
-            <Button 
-                onClick={() => setShowSignBoard(true)}
+        <Stack alignItems="center" justifyContent="center" sx={{ height: "90vh" }} mt={!signature && 10}>
+            <Button
+                variant="outlined" 
+                onClick={() => setShowSignBoard(true)} 
+                sx={{ marginBottom: "1rem" }}
             >
                 Start Signing
             </Button>
+
+            {
+                signature &&
+                <Card sx={{ maxWidth: 345 }}>
+                    <Stack 
+                        py={2}
+                        px={2}
+                        alignItems="flex-end"
+                        sx={{ cursor: "pointer" }}
+                    >
+                        <Box 
+                            pt={0.4}
+                            px={0.4}
+                            width={20}
+                            border="1px solid"
+                            borderRadius="4px"
+                            borderColor={red[800]}
+                            onClick={handleDeleteSignature}
+                            sx={{ cursor: "pointer" }}
+                        >
+                            <Close fontSize="small" color="error" />
+                        </Box>
+                    </Stack>
+                    <Divider />
+                    <CardMedia
+                        component="img"
+                        alt="Signature"
+                        height="240"
+                        image={signature && Buffer.from(signature?.image, "base64").toString()}
+                    />
+                    <CardContent>
+                    <Typography variant="body2" color="text.secondary" mb={1}>
+                            {moment(signature.createdAt).format("DD-MM-YYYY hh:mm A")}
+                        </Typography>
+                        <Typography gutterBottom variant="h5" component="div">
+                            {signature.signer_name}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            {signature.reason}
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <ActionBar 
+                            image={Buffer.from(signature?.image, "base64").toString()}
+                            svg={signature?.svg}
+                        />
+                    </CardActions>
+                </Card>
+            }
         </Stack>
     )
 }

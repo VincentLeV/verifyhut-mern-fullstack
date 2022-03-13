@@ -5,6 +5,10 @@ const signatureSchema = new mongoose.Schema({
         type: Buffer,
         required: true
     },
+    svg: {
+        type: String,
+        required: true
+    },
     signer_name: {
         type: String,
         required: true

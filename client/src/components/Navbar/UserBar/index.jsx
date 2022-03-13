@@ -31,6 +31,7 @@ export default function UserBar() {
             alignItems="center"
             py={2}
             px={5}
+            sx={{ height: "8vh", maxHeight: "8vh" }}
         >
             <Avatar {...randomColorAvatar(user.name)} />
             <IconButton 

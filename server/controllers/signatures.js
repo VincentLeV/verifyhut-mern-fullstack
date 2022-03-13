@@ -26,6 +26,7 @@ signatureRouter.post("/", tokenExtractor, async (req, res, next) => {
     let category
     const signature = new Signature({ 
         image: req.body.image,
+        svg: req.body.svg,
         signer_name: req.body.signer_name,
         reason: req.body.reason,    
         user: user.id

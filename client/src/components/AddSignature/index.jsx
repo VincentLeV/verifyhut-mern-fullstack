@@ -45,14 +45,16 @@ export default function AddSignature({
         }
         const newSignature = {
             image: initialVal?.image,
+            svg: initialVal.svg,
             signer_name: values.signer_name,
             reason: values.reason,
             category: categoryId || category,
         }
-
+        
         try {
             const token = getDataLS("auth-token")
             const data = await Axios.addSignature(newSignature, token)
+            
             if (category) {
                 const index = categories.findIndex(x => x.id === categoryId)
                 const newSignatures = [ ...categories[index].signatures, data ]
@@ -64,7 +66,7 @@ export default function AddSignature({
                 setUncategorized([ ...uncategorized, data ])
             }
             setValues({ signer_name: "", reason: "" })
-            setInitialVal({ image: "", createdAt: "" })
+            setInitialVal({ image: "", svg: "", createdAt: "" })
             setIsAddFormOpen(false)
             setToast({ isOpen: true, msg: "Successfully created signature!" })
         } catch (err) {
@@ -82,7 +84,13 @@ export default function AddSignature({
         <Dialog open={isAddFormOpen} onClose={handleClose}>
             <DialogTitle>Add Signature</DialogTitle>
             <DialogContent>
-                <img src={initialVal.image} alt="Signature" width={300} style={{ display: "block", margin: "0 auto 1rem auto" }} />
+                <img 
+                    src={initialVal.image} 
+                    alt="Signature" 
+                    width="60%"
+                    style={{ display: "block", margin: "0 auto 1rem auto" }} 
+                />
+
                 <Box component="form" onSubmit={handleAddSignature} p={0}>
                     <TextField
                         autoFocus

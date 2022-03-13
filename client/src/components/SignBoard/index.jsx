@@ -10,10 +10,10 @@ export default function SignBoard() {
     const canvas = createRef()
 
     const [ isAddFormOpen, setIsAddFormOpen ] = useState(false)
-    const [ initialVal, setInitialVal ] = useState({ image: "", createdAt: "" })
+    const [ initialVal, setInitialVal ] = useState({ image: "", svg: "", createdAt: "" })
 
     return (
-        <Stack alignItems="center" mt={12} ml={0} px={2}>
+        <Stack alignItems="center" mt={8} ml={0} px={2}>
             <Typography 
                 variant="h5" 
                 fontWeight="bold"

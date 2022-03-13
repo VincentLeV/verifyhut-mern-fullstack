@@ -14,9 +14,11 @@ import { useAlert } from "../../../context/AlertContext"
 import { useSignatures } from "../../../context/SignatureContext"
 import Axios from "../../../services/axios"
 import { getDataLS } from "../../../utils/helpers"
+import useMediaQuery from '@mui/material/useMediaQuery'
 
-export default function SignatureBar({ signature, category, setShowSignBoard }) {
-    const { categories, setCategories } = useCategories()
+export default function SignatureBar({ signature, category, setShowSignBoard, setIsOpen }) {
+    const matches = useMediaQuery('(min-width: 1024px)')
+    const { categories, setCategories, setCategory } = useCategories()
     const { setToast } = useToast()
     const { isConfirmed } = useAlert()
     const { uncategorized, setUncategorized, setSignature } = useSignatures()
@@ -39,6 +41,7 @@ export default function SignatureBar({ signature, category, setShowSignBoard }) 
                 } else {
                     setUncategorized(uncategorized.filter(x => x.id !== signature.id))
                 }
+                setSignature(null)
                 setToast({ isOpen: true, msg: "Successfully deleted signature!" })
             } catch (err) {
                 setToast({ isOpen: true, msg: err?.response?.data?.message, severity: "error" })
@@ -47,8 +50,10 @@ export default function SignatureBar({ signature, category, setShowSignBoard }) 
     }
 
     const handleClick = () => {
+        !matches && setIsOpen(false)
         setShowSignBoard(false)
         setSignature(signature)
+        setCategory(category)
     }
 
     return (

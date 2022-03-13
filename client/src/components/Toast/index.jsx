@@ -25,13 +25,13 @@ export default function Toast() {
     return (
         <Snackbar
             autoHideDuration={3000}
-            sx={{ width: {sm: "100%", md: "80%", lg: "50%"}, margin: "1rem auto" }}
+            sx={{ margin: "1rem auto" }}
             anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             open={toast.isOpen}
             onClose={handleClose}
             key="bottomcenter"
         >
-            <Alert onClose={handleClose} severity={toast.severity} sx={{ width: '100%' }}>
+            <Alert onClose={handleClose} severity={toast.severity} sx={{ width: {sm: "90%", md: "80%", lg: "100%"} }}>
                 {toast.msg}
             </Alert>
         </Snackbar>

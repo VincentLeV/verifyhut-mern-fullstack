@@ -7,6 +7,7 @@ export const getUncategorized = async () => {
 }
 
 export const addSignature = async (data, token) => {
+    console.log(data)
     const res = await axios.post(`${baseUrl}/api/signatures`, data, {
         headers: {
             "Authorization": `Bearer ${token}` 

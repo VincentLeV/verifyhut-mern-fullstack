@@ -8,22 +8,26 @@ import Redo from "@mui/icons-material/Redo"
 // import Backspace from "@mui/icons-material/Backspace"
 import Clear from "@mui/icons-material/Clear"
 import Save from "@mui/icons-material/Save"
+import { triggerBase64Download } from 'react-base64-downloader'
+import { saveAs } from "file-saver"
 
 export default function ToolBar({ canvas, setIsAddFormOpen, setInitialVal }) {
     const handleExportPng = async () => {
         const data = await canvas.current.exportImage("png")
-        console.log(data)
+        triggerBase64Download(data, 'signature')
     }
 
     const handleExportSvg = async () => {
         const data = await canvas.current.exportSvg()
-        console.log(data)
+        const file = new Blob([data], {type: "image/svg+xml"})
+        saveAs(file, "signature")
     }
 
     const openAddSignatureDialog = async () => {
         const signTimestamps = Date.now()
-        const data = await canvas.current.exportImage("png")
-        setInitialVal({ image: data, createdAt: signTimestamps })
+        const png = await canvas.current.exportImage("png")
+        const svg = await canvas.current.exportSvg()
+        setInitialVal({ image: png, svg: svg, createdAt: signTimestamps })
         setIsAddFormOpen(true)
     }
 

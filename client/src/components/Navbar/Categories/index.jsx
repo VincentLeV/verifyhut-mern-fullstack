@@ -12,7 +12,7 @@ import Category from "./Category"
 import EditCategory from "../../EditCategory"
 import AddCategory from "../../AddCategory"
 
-export default function Categories({ setShowSignBoard }) {
+export default function Categories({ setShowSignBoard, setIsOpen }) {
     const { categories, setCategories } = useCategories()
     const [ selected, setSelected ] = useState(null)
     const [ expanded, setExpanded ] = useState("")
@@ -45,6 +45,7 @@ export default function Categories({ setShowSignBoard }) {
                     setIsEditFormOpen={setIsEditFormOpen}
                     setSelected={setSelected}
                     setShowSignBoard={setShowSignBoard}
+                    setIsOpen={setIsOpen}
                 />
             ))}
 

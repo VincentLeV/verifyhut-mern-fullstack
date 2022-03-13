@@ -27,7 +27,8 @@ export default function Category({
     setExpanded, 
     setIsEditFormOpen,
     setSelected,
-    setShowSignBoard
+    setShowSignBoard,
+    setIsOpen
 }) {
     const { isConfirmed } = useAlert()
     const { setToast } = useToast()
@@ -73,7 +74,13 @@ export default function Category({
             </AccordionSummary>
             <AccordionDetails >
                 {category?.signatures?.map((sig, i) => (
-                    <SignatureBar key={i} signature={sig} category={category} setShowSignBoard={setShowSignBoard} />
+                    <SignatureBar 
+                        key={i} 
+                        signature={sig} 
+                        category={category} 
+                        setShowSignBoard={setShowSignBoard} 
+                        setIsOpen={setIsOpen}
+                    />
                 ))}
             </AccordionDetails>
             <Divider />

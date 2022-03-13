@@ -4,7 +4,7 @@ import { useSignatures } from "../../../context/SignatureContext"
 
 import SignatureBar from "../SignatureBar"
 
-export default function Uncategorized({ setShowSignBoard }) {
+export default function Uncategorized({ setShowSignBoard, setIsOpen }) {
     const { uncategorized } = useSignatures()
 
     return (
@@ -13,7 +13,12 @@ export default function Uncategorized({ setShowSignBoard }) {
             <Stack mt={2}>
                 {
                     uncategorized?.map((sig, i) => (
-                        <SignatureBar key={i} signature={sig} setShowSignBoard={setShowSignBoard} />
+                        <SignatureBar 
+                            key={i} 
+                            signature={sig} 
+                            setShowSignBoard={setShowSignBoard} 
+                            setIsOpen={setIsOpen} 
+                        />
                     ))
                 }
             </Stack>

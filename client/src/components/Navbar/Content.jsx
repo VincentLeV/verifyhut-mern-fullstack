@@ -8,7 +8,7 @@ import Categories from "./Categories"
 import UserBar from "./UserBar"
 import Uncategorized from "./Uncategorized"
 
-export default function Content({ setShowSignBoard }) {
+export default function Content({ setShowSignBoard,setIsOpen }) {
 
     return (
         <Box
@@ -16,9 +16,9 @@ export default function Content({ setShowSignBoard }) {
             minWidth={280}
             pt={0.8}
         >
-            <Box px={2} sx={{ overflow: 'auto', maxHeight: "80vh", minHeight: "80vh" }}>
-                <Categories setShowSignBoard={setShowSignBoard} />
-                <Uncategorized setShowSignBoard={setShowSignBoard} />
+            <Box px={2} sx={{ overflow: 'auto', height: "78vh", maxHeight: "78vh" }}>
+                <Categories setShowSignBoard={setShowSignBoard} setIsOpen={setIsOpen} />
+                <Uncategorized setShowSignBoard={setShowSignBoard} setIsOpen={setIsOpen} />
             </Box>
             <Divider />
             <UserBar />
