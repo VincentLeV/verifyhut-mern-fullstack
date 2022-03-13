@@ -36,20 +36,13 @@ export default function Main() {
                 setCategories(userCategories)
                 setUncategorized(uncategorized)
                 setSignatures(data.signatures)
-
-                // const temp = userCategories.findIndex(x => x.name === "Uncategorized")
-                // if (temp === -1) {
-                //     const c = await Axios.addCategory({ name: "Uncategorized" }, storedUser)
-                //     setCategories([ ...userCategories, c ])
-                // } else {
-                //     setCategories(userCategories)
-                // }
             }
         }
     }
 
     useEffect(() => {
         checkLogin()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

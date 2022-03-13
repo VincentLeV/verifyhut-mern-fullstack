@@ -18,6 +18,8 @@ import {
 } from "./signature"
 import { login } from "./authentication"
 
+export const baseUrl = "https://verifyhut-mern-fullstack.herokuapp.com"
+
 const Axios = {
     login,
     getUsers,

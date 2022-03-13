@@ -1,5 +1,5 @@
 import axios from "axios"
-const baseUrl = process.env.REACT_APP_API_BASE_URL
+import { baseUrl } from "."
 
 export const getUsers = async () => {
     const req = await axios.get(`${baseUrl}/api/users`)

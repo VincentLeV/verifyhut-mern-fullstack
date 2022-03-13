@@ -56,14 +56,14 @@ export default function Navbar({ setShowSignBoard }) {
                     pr={1} 
                     sx={{ display: matches && "none" }}
                 >
-                    <AppLogo width={"2.5rem"} margin={"auto"} padding={"0"} />
+                    <AppLogo width={"2.5rem"} margin={"0"} padding={"0"} />
                     <Box sx={{ textAlign: "right" }} py={1}>
                         <IconButton onClick={() => setIsOpen(false)}>
                             <ChevronLeftIcon fontSize="large" color="primary" sx={{ display: matches && "none" }} />
                         </IconButton>
                     </Box>
-                    <Divider />
                 </Stack>
+                { !matches && <Divider /> }
 
                 <Content setShowSignBoard={setShowSignBoard} />
             </SwipeableDrawer>

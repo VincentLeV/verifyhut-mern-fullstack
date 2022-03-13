@@ -11,6 +11,7 @@ export default function Toast() {
         if (toast?.msg?.includes("expired")) {
             navigate("/")
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [toast?.msg])
 
     const handleClose = (_, reason) => {
