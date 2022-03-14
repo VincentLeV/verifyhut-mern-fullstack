@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { 
     Box, 
     Stack,
@@ -16,7 +16,7 @@ import Uncategorized from "./Uncategorized"
 import AppLogo from "../AppLogo"
 
 export default function Content({ setShowSignBoard, setIsOpen }) {
-    const matches = useMediaQuery('(min-width: 1024px)')
+    const matches = useMediaQuery('(max-width: 1700px)')
     const [ isAddFormOpen, setIsAddFormOpen ] = useState(false)
 
     const toggleNavbar = (e) => {
@@ -31,23 +31,21 @@ export default function Content({ setShowSignBoard, setIsOpen }) {
         setIsOpen(false)
     }
 
+    useEffect(() => {
+        setIsOpen(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [matches])
+
 
     return (
         <Box
             role="presentation"
             minWidth={280}
             pt={0.8}
-            sx={{ 
-                // display: "flex",
-                // flexDirection: "column",
-                // justifyContent: "space-between",
-                // display: "grid", 
-                // grid: {sm: "1fr 0.2fr 8fr 0.2fr 1fr / 1fr", lg: "1fr 0.1f 6fr 10fr 0.1fr / 1fr"}, 
-                maxHeight: "98vh",
-            }}
+            sx={{ maxHeight: "98vh" }}
         >
             { 
-                matches &&  
+                !matches &&  
                 <Stack>
                     <AppLogo width={"2.5rem"} margin={"auto"} padding={"1rem 0"} />
                 </Stack>
@@ -58,18 +56,15 @@ export default function Content({ setShowSignBoard, setIsOpen }) {
                 justifyContent="space-between" 
                 pl={2} 
                 pr={1} 
-                sx={{ display: matches && "none" }}
+                sx={{ display: !matches && "none" }}
             >
                 <AppLogo width={"2.5rem"} margin={"0"} padding={"0"} />
                 <Box sx={{ textAlign: "right" }} py={1}>
                     <IconButton onClick={toggleNavbar}>
-                        <ChevronLeftIcon fontSize="large" color="primary" sx={{ display: matches && "none" }} />
+                        <ChevronLeftIcon fontSize="large" color="primary" sx={{ display: !matches && "none" }} />
                     </IconButton>
                 </Box>
             </Stack>
-
-            { !matches && <Divider /> }
-            
 
             <Box px={2} sx={{ maxHeight: "65vh", minHeight: "65vh" }}>
                 <Stack direction="row" alignItems="center" justifyContent="space-between" pr={1} mb={2}>

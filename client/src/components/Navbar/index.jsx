@@ -12,7 +12,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import Content from "./Content"
 
 export default function Navbar({ setShowSignBoard }) {
-    const matches = useMediaQuery('(min-width: 1024px)')
+    const matches = useMediaQuery('(max-width: 1700px)')
     const [ isOpen, setIsOpen ] = useState(matches ? false : true)
 
     return (
@@ -28,7 +28,7 @@ export default function Navbar({ setShowSignBoard }) {
                         aria-label="open navbar"
                         onClick={() => setIsOpen(true)}
                         edge="start"
-                        sx={{ ...(isOpen && { display: 'none' }), display: matches && "none" }}
+                        sx={{ ...(isOpen && { display: 'none' }), display: !matches && "none" }}
                     >
                         <MenuIcon color="primary" fontSize="large" />
                     </IconButton>

@@ -30,6 +30,7 @@ export default function Main() {
                     msg: "You session has expired. Please login again!", 
                     severity: "warning" 
                 })
+                localStorage.clear()
             } else if (decodedToken?.exp * 1000 >= Date.now()) {
                 navigate("/home")
                 setLoading(true)

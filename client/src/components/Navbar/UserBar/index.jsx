@@ -22,6 +22,7 @@ export default function UserBar() {
             msg: "Logout successfully. See you again!", 
             severity: "success" 
         })
+        localStorage.clear()
     }
 
     return (
