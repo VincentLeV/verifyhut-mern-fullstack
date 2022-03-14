@@ -1,5 +1,5 @@
 import React from "react"
-import { Box } from "@mui/material"
+import { Stack } from "@mui/material"
 import { useSignatures } from "../../../context/SignatureContext"
 
 import SignatureBar from "../SignatureBar"
@@ -8,7 +8,7 @@ export default function Uncategorized({ setShowSignBoard, setIsOpen }) {
     const { uncategorized } = useSignatures()
 
     return (
-        <Box my={2} sx={{ overflow: "auto", maxHeight: "20vh" }}>
+        <Stack my={2} alignItems="center" sx={{ overflow: "auto", maxHeight: "20vh" }}>
             {
                 uncategorized?.map((sig, i) => (
                     <SignatureBar 
@@ -19,7 +19,7 @@ export default function Uncategorized({ setShowSignBoard, setIsOpen }) {
                     />
                 ))
             }
-        </Box>
+        </Stack>
         
     )
 }

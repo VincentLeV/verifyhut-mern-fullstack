@@ -18,9 +18,8 @@ export default function Main() {
     const { setUncategorized, setSignatures } = useSignatures()
     const [ loading, setLoading ] = useState(false)
 
-    const storedUser = getDataLS("auth-token")
-
     const checkLogin = async () => {
+        const storedUser = getDataLS("auth-token")
         if (storedUser) {
             const decodedToken = parseToken(storedUser)
             if (decodedToken?.exp * 1000 < Date.now()) {
@@ -56,7 +55,7 @@ export default function Main() {
     return (
         <main>
             <Home />
-            <p>{storedUser ? storedUser?.slice(0, 10) : null}</p>
+
             {loading && <Spinner />}
         </main>
     )
