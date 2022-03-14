@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, Container } from "@mui/material"
+import { Container } from "@mui/material"
 
 import NavBar from "../components/Navbar"
 import SignBoard from "../components/SignBoard"

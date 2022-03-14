@@ -34,7 +34,6 @@ export default function ToolBar({ canvas, setIsAddFormOpen, setInitialVal }) {
     return (
         <Toolbar>
             <ButtonGroup size="small" sx={{ margin: "auto" }}>
-                <Button key={1} onClick={() => console.log(canvas.current)}>Show</Button>
                 <Button key={2} onClick={() => canvas.current.undo()}>
                     <Undo />
                 </Button>
