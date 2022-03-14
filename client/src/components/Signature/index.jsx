@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Buffer } from "buffer"
 import { 
     Stack, 
@@ -22,12 +22,24 @@ import { getDataLS } from "../../utils/helpers"
 import Axios from "../../services/axios"
 
 import ActionBar from "./ActionBar"
+import InfoCanvas from "./InfoCanvas"
 
 export default function Signature({ setShowSignBoard }) {
     const { signature, setSignature, uncategorized, setUncategorized } = useSignatures()
     const { category, categories, setCategories } = useCategories()
     const { isConfirmed } = useAlert()
     const { setToast } = useToast()
+    const [ infoBase64, setInfoBase64 ] = useState("")
+    const [ sigHeight, setSigHeight ] = useState(0)
+
+    useEffect(() => {
+        const sigBase64 = Buffer.from(signature.image, 'base64').toString('binary')
+        const i = new Image()
+        i.src = sigBase64
+        i.onload = () => {
+            setSigHeight(i.height)
+        }
+    }, [signature])
 
     const handleDeleteSignature = async (e) => {
         e.preventDefault()
@@ -96,7 +108,15 @@ export default function Signature({ setShowSignBoard }) {
                         image={signature && Buffer.from(signature?.image, "base64").toString()}
                     />
                     <CardContent>
-                    <Typography variant="body2" color="text.secondary" mb={1}>
+                        <InfoCanvas 
+                            sigHeight={sigHeight}
+                            signerName={signature.signer_name} 
+                            createdAt={moment(signature.createdAt).format("DD-MM-YYYY hh:mm A")} 
+                            reason={signature.reason}
+                            setInfoBase64={setInfoBase64}
+                        />
+
+                        <Typography variant="body2" color="text.secondary" mb={1}>
                             {moment(signature.createdAt).format("DD-MM-YYYY hh:mm A")}
                         </Typography>
                         <Typography gutterBottom variant="h5" component="div">
@@ -110,6 +130,7 @@ export default function Signature({ setShowSignBoard }) {
                         <ActionBar 
                             image={Buffer.from(signature?.image, "base64").toString()}
                             svg={signature?.svg}
+                            infoBase64={infoBase64}
                         />
                     </CardActions>
                 </Card>

@@ -53,3 +53,35 @@ export const randomColorAvatar = (name) => {
         children: children,
     }
 }
+
+export const createInfoCanvas = (
+    canvas, 
+    dimensions = {width: 100, height: 100},
+    info, 
+    style = {}
+) => {
+    const { width, height } = dimensions
+    let ctx = null
+    const canvasEl = canvas.current
+    canvasEl.width = width
+    canvasEl.height = height
+    
+    ctx = canvasEl.getContext("2d")
+    ctx.fillStyle = "white"
+    ctx.fillRect(0, 0, canvasEl.width, canvasEl.height)
+
+    const { fontSize = 15, fontFamily = 'Arial', color = 'black', textAlign = 'left', textBaseline = 'top' } = style;
+
+    ctx.beginPath()
+    ctx.font = fontSize + 'px ' + fontFamily;
+    ctx.textAlign = textAlign;
+    ctx.textBaseline = textBaseline;
+    ctx.fillStyle = color
+    info.forEach(i => {
+        ctx.fillText(i.text, i.x, i.y)
+    })
+    ctx.stroke()
+    return canvasEl
+}
+
+export const getInfoBase64 = (canvasEl) => canvasEl.toDataURL()

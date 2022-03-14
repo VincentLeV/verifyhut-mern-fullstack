@@ -2,25 +2,22 @@ import React from "react"
 import { Button, Toolbar, ButtonGroup } from "@mui/material"
 import Undo from "@mui/icons-material/Undo"
 import Redo from "@mui/icons-material/Redo"
-// import ImportExport from "@mui/icons-material/ImportExport"
-// import IosShare from "@mui/icons-material/IosShare"
-// import Image from "@mui/icons-material/Image"
-// import Backspace from "@mui/icons-material/Backspace"
 import Clear from "@mui/icons-material/Clear"
 import Save from "@mui/icons-material/Save"
 import { triggerBase64Download } from 'react-base64-downloader'
 import { saveAs } from "file-saver"
+import moment from "moment-mini"
 
 export default function ToolBar({ canvas, setIsAddFormOpen, setInitialVal }) {
     const handleExportPng = async () => {
         const data = await canvas.current.exportImage("png")
-        triggerBase64Download(data, 'signature')
+        triggerBase64Download(data, `${moment(Date.now()).format("DD-MM-YYYYHH:aa")}-signature`)
     }
 
     const handleExportSvg = async () => {
         const data = await canvas.current.exportSvg()
         const file = new Blob([data], {type: "image/svg+xml"})
-        saveAs(file, "signature")
+        saveAs(file, `${moment(Date.now()).format("DD-MM-YYYYHH:aa")}-signature`)
     }
 
     const openAddSignatureDialog = async () => {
