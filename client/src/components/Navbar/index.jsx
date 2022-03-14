@@ -7,12 +7,12 @@ import {
     IconButton,
 } from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu"
-import useMediaQuery from '@mui/material/useMediaQuery'
+import useMediaQuery from "@mui/material/useMediaQuery"
 
 import Content from "./Content"
 
 export default function Navbar({ setShowSignBoard }) {
-    const matches = useMediaQuery('(max-width: 1700px)')
+    const matches = useMediaQuery("(max-width: 1700px)")
     const [ isOpen, setIsOpen ] = useState(matches ? false : true)
 
     const handleClickBackDrop = () => {
@@ -20,7 +20,7 @@ export default function Navbar({ setShowSignBoard }) {
     }
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: "flex" }}>
             {
                 isOpen &&
                 <Box 
@@ -41,7 +41,7 @@ export default function Navbar({ setShowSignBoard }) {
                         aria-label="open navbar"
                         onClick={() => setIsOpen(true)}
                         edge="start"
-                        sx={{ ...(isOpen && { display: 'none' }), display: !matches && "none" }}
+                        sx={{ ...(isOpen && { display: "none" }), display: !matches && "none" }}
                     >
                         <MenuIcon color="primary" fontSize="large" />
                     </IconButton>

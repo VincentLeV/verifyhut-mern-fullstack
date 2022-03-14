@@ -22,12 +22,12 @@ export const useAlert = () => {
 
         return promise.then(
             () => { 
-                setAlert({ ...alert, isOpen: false });
-                return true;
+                setAlert({ ...alert, isOpen: false })
+                return true
             },
             () => {
-                setAlert({ ...alert, isOpen: false });
-                return false;
+                setAlert({ ...alert, isOpen: false })
+                return false
             }
         )
     }

@@ -15,7 +15,7 @@ export default function Toast() {
     }, [toast?.msg])
 
     const handleClose = (_, reason) => {
-        if (reason === 'clickaway') {
+        if (reason === "clickaway") {
             return
         }
     
@@ -31,7 +31,7 @@ export default function Toast() {
             onClose={handleClose}
             key="bottomcenter"
         >
-            <Alert onClose={handleClose} severity={toast.severity} sx={{ width: {sm: "90%", md: "80%", lg: "100%"} }}>
+            <Alert onClose={handleClose} severity={toast.severity} sx={{ width: { sm: "90%", md: "80%", lg: "100%" } }}>
                 {toast.msg}
             </Alert>
         </Snackbar>

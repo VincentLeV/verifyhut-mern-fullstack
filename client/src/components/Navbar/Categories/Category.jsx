@@ -8,9 +8,9 @@ import {
     IconButton,
     Divider,
 } from "@mui/material"
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
-import EditIcon from '@mui/icons-material/Edit'
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline"
+import EditIcon from "@mui/icons-material/Edit"
 import { red, amber } from "@mui/material/colors"
 import Axios from "../../../services/axios"
 import { getDataLS } from "../../../utils/helpers"

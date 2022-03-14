@@ -1,7 +1,7 @@
 import React from "react"
 import { Stack, Box } from "@mui/material"
 import { grey } from "@mui/material/colors"
-import CircularProgress from '@mui/material/CircularProgress'
+import CircularProgress from "@mui/material/CircularProgress"
 
 export default function Spinner() {
     return (

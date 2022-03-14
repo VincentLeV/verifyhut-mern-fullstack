@@ -20,7 +20,7 @@ const stringToColor = (string) => {
     if (!string) return 
     let hash = 0
     let i
-    let color = '#'
+    let color = "#"
 
     for (i = 0; i < string.length; i += 1) {
         hash = string.charCodeAt(i) + ((hash << 5) - hash)
@@ -37,10 +37,10 @@ export const randomColorAvatar = (name) => {
     if (!name) return
     
     let children
-    if (!name.split(' ')[1]) {
-        children = name.split(' ')[0][0]
+    if (!name.split(" ")[1]) {
+        children = name.split(" ")[0][0]
     } else {
-        children = `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`
+        children = `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`
     }
 
     return {
@@ -56,7 +56,7 @@ export const randomColorAvatar = (name) => {
 
 export const createInfoCanvas = (
     canvas, 
-    dimensions = {width: 100, height: 100},
+    dimensions = { width: 100, height: 100 },
     info, 
     style = {}
 ) => {
@@ -70,12 +70,12 @@ export const createInfoCanvas = (
     ctx.fillStyle = "white"
     ctx.fillRect(0, 0, canvasEl.width, canvasEl.height)
 
-    const { fontSize = 15, fontFamily = 'Arial', color = 'black', textAlign = 'left', textBaseline = 'top' } = style;
+    const { fontSize = 15, fontFamily = "Arial", color = "black", textAlign = "left", textBaseline = "top" } = style
 
     ctx.beginPath()
-    ctx.font = fontSize + 'px ' + fontFamily;
-    ctx.textAlign = textAlign;
-    ctx.textBaseline = textBaseline;
+    ctx.font = fontSize + "px " + fontFamily
+    ctx.textAlign = textAlign
+    ctx.textBaseline = textBaseline
     ctx.fillStyle = color
     info.forEach(i => {
         ctx.fillText(i.text, i.x, i.y)

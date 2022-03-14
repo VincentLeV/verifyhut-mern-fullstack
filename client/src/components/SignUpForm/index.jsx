@@ -47,7 +47,7 @@ export default function SignUpForm({ setShowSignUpForm }) {
         <Box
             component="form"
             sx={{
-                '& .MuiTextField-root': { width: "100%" },  
+                "& .MuiTextField-root": { width: "100%" },  
                 width: { sm: "100%", md: "40%" },
                 margin: "1rem auto 0.5rem auto"
             }}

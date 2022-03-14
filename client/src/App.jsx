@@ -20,25 +20,25 @@ function App() {
     return (
         <Router>
             <UserProvider>
-            <ToastProvider>
-            <AlertProvider>
-            <CategoryProvider>
-            <SignatureProvider>
-                <Routes>
-                    <Route path="*" element={<Onboarding />} />
-                    <Route path="/" element={<Onboarding />} />
-                    <Route path="/home" element={<Main />} />
-                </Routes>            
+                <ToastProvider>
+                    <AlertProvider>
+                        <CategoryProvider>
+                            <SignatureProvider>
+                                <Routes>
+                                    <Route path="*" element={<Onboarding />} />
+                                    <Route path="/" element={<Onboarding />} />
+                                    <Route path="/home" element={<Main />} />
+                                </Routes>            
                 
-                <Toast />
-                <Alert />
-            </SignatureProvider>
-            </CategoryProvider>
-            </AlertProvider>
-            </ToastProvider>
+                                <Toast />
+                                <Alert />
+                            </SignatureProvider>
+                        </CategoryProvider>
+                    </AlertProvider>
+                </ToastProvider>
             </UserProvider>
         </Router>
-    );
+    )
 }
 
 export default App

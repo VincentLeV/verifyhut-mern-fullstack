@@ -6,7 +6,7 @@ import {
     FormControl,
     Typography,
 } from "@mui/material"
-import { red } from '@mui/material/colors'
+import { red } from "@mui/material/colors"
 import { useNavigate } from "react-router-dom"
 
 import Axios from "../../services/axios"
@@ -27,7 +27,8 @@ export default function LoginForm({ setLoading }) {
         setLoading(true)
         e.preventDefault()
         try {
-            const { passwordHash, ...data } = await Axios.login(values)
+            const data = await Axios.login(values)
+            delete data.passwordHash
             storeDataLS("auth-token", data.token)
             setTimeout(() => {
                 setUser({
@@ -49,7 +50,7 @@ export default function LoginForm({ setLoading }) {
         <Box
             component="form"
             sx={{
-                '& .MuiTextField-root': { width: "100%" },  
+                "& .MuiTextField-root": { width: "100%" },  
                 width: { sm: "100%", md: "40%" },
                 margin: "1rem auto 0.5rem auto",
             }}

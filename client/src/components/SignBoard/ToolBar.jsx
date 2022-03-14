@@ -4,7 +4,7 @@ import Undo from "@mui/icons-material/Undo"
 import Redo from "@mui/icons-material/Redo"
 import Clear from "@mui/icons-material/Clear"
 import Save from "@mui/icons-material/Save"
-import { triggerBase64Download } from 'react-base64-downloader'
+import { triggerBase64Download } from "react-base64-downloader"
 import { saveAs } from "file-saver"
 import moment from "moment-mini"
 
@@ -16,7 +16,7 @@ export default function ToolBar({ canvas, setIsAddFormOpen, setInitialVal }) {
 
     const handleExportSvg = async () => {
         const data = await canvas.current.exportSvg()
-        const file = new Blob([data], {type: "image/svg+xml"})
+        const file = new Blob([data], { type: "image/svg+xml" })
         saveAs(file, `${moment(Date.now()).format("DD-MM-YYYYHH:aa")}-signature`)
     }
 

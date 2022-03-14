@@ -34,7 +34,7 @@ export default function Signature({ setShowSignBoard }) {
 
     useEffect(() => {
         if (signature?.image) {
-            const sigBase64 = Buffer.from(signature.image, 'base64').toString('binary')
+            const sigBase64 = Buffer.from(signature.image, "base64").toString("binary")
             const i = new Image()
             i.src = sigBase64
             i.onload = () => {

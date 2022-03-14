@@ -14,10 +14,10 @@ import { useAlert } from "../../../context/AlertContext"
 import { useSignatures } from "../../../context/SignatureContext"
 import Axios from "../../../services/axios"
 import { getDataLS } from "../../../utils/helpers"
-import useMediaQuery from '@mui/material/useMediaQuery'
+import useMediaQuery from "@mui/material/useMediaQuery"
 
 export default function SignatureBar({ signature, category, setShowSignBoard, setIsOpen }) {
-    const matches = useMediaQuery('(min-width: 1024px)')
+    const matches = useMediaQuery("(min-width: 1024px)")
     const { categories, setCategories, setCategory } = useCategories()
     const { setToast } = useToast()
     const { isConfirmed } = useAlert()

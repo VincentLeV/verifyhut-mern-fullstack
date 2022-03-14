@@ -14,8 +14,8 @@ export default function Home() {
 
             { 
                 showSignBoard 
-                ? <SignBoard /> 
-                : <Signature setShowSignBoard={setShowSignBoard} />
+                    ? <SignBoard /> 
+                    : <Signature setShowSignBoard={setShowSignBoard} />
             }
         </Box>
     )

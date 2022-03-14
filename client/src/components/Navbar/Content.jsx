@@ -6,9 +6,9 @@ import {
     IconButton,
     Typography
 } from "@mui/material"
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import AddCircleIcon from '@mui/icons-material/AddCircle'
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft"
+import useMediaQuery from "@mui/material/useMediaQuery"
+import AddCircleIcon from "@mui/icons-material/AddCircle"
 
 import Categories from "./Categories"
 import UserBar from "./UserBar"
@@ -16,14 +16,14 @@ import Uncategorized from "./Uncategorized"
 import AppLogo from "../AppLogo"
 
 export default function Content({ setShowSignBoard, setIsOpen }) {
-    const matches = useMediaQuery('(max-width: 1700px)')
+    const matches = useMediaQuery("(max-width: 1700px)")
     const [ isAddFormOpen, setIsAddFormOpen ] = useState(false)
 
     const toggleNavbar = (e) => {
         if (
             e &&
-            e.type === 'keydown' &&
-            (e.key === 'Tab' || e.key === 'Shift')
+            e.type === "keydown" &&
+            (e.key === "Tab" || e.key === "Shift")
         ) {
             return
         }

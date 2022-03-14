@@ -18,27 +18,27 @@ export default function Onboarding() {
 
             {
                 showSignUpForm 
-                ? <SignUpForm setShowSignUpForm={setShowSignUpForm} setLoading={setLoading} /> 
-                : <LoginForm setShowSignUpForm={setShowSignUpForm} setLoading={setLoading} />
+                    ? <SignUpForm setShowSignUpForm={setShowSignUpForm} setLoading={setLoading} /> 
+                    : <LoginForm setShowSignUpForm={setShowSignUpForm} setLoading={setLoading} />
             }
             {
                 showSignUpForm
-                ? <Typography 
-                    className="link"
-                    variant="subtitle2"
-                    sx={{ textAlign: "center", cursor: "pointer" }}
-                    onClick={() => setShowSignUpForm(false)}
-                >
+                    ? <Typography 
+                        className="link"
+                        variant="subtitle2"
+                        sx={{ textAlign: "center", cursor: "pointer" }}
+                        onClick={() => setShowSignUpForm(false)}
+                    >
                     Already have account? Go back
-                </Typography>
-                : <Typography 
-                    className="link"
-                    variant="subtitle2"
-                    sx={{ textAlign: "center", cursor: "pointer" }}
-                    onClick={() => setShowSignUpForm(true)}
-                >
-                    Don't have account yet? Sign up now
-                </Typography>
+                    </Typography>
+                    : <Typography 
+                        className="link"
+                        variant="subtitle2"
+                        sx={{ textAlign: "center", cursor: "pointer" }}
+                        onClick={() => setShowSignUpForm(true)}
+                    >
+                    Don&#39;t have account yet? Sign up now
+                    </Typography>
             }
         </Box>
     )

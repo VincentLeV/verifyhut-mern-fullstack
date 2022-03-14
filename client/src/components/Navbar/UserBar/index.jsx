@@ -49,7 +49,7 @@ export default function UserBar() {
                 onClick={handleLogout}
             >
                 <Tooltip title="Logout">
-                <LogoutIcon onClick={handleLogout} sx={{ margin: "0 0.3rem" }} />
+                    <LogoutIcon onClick={handleLogout} sx={{ margin: "0 0.3rem" }} />
                 </Tooltip>
             </IconButton>
         </Stack>

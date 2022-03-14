@@ -34,7 +34,8 @@ export default function Main() {
             } else if (decodedToken?.exp * 1000 >= Date.now()) {
                 navigate("/home")
                 setLoading(true)
-                const { passwordHash, ...data } = await Axios.getUser(decodedToken?.id)
+                const data = await Axios.getUser(decodedToken?.id)
+                delete data.passwordHash
                 setUser({ ...data, isLoggedIn: true })
                 const userCategories = await Axios.getUserCategories(data?.id)
                 const uncategorized = await Axios.getUncategorized(data?.id)
