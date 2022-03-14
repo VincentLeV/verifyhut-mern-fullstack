@@ -29,7 +29,6 @@ export default function UserBar() {
             direction="row" 
             justifyContent="space-between" 
             alignItems="center"
-            py={2}
             px={5}
             sx={{ height: "8vh", maxHeight: "8vh" }}
         >

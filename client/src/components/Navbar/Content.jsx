@@ -38,8 +38,11 @@ export default function Content({ setShowSignBoard, setIsOpen }) {
             minWidth={280}
             pt={0.8}
             sx={{ 
-                display: "grid", 
-                grid: {sm: "1fr 0.2fr 8fr 0.2fr 1fr / 1fr", lg: "1fr 0.1f 6fr 10fr 0.1fr / 1fr"}, 
+                // display: "flex",
+                // flexDirection: "column",
+                // justifyContent: "space-between",
+                // display: "grid", 
+                // grid: {sm: "1fr 0.2fr 8fr 0.2fr 1fr / 1fr", lg: "1fr 0.1f 6fr 10fr 0.1fr / 1fr"}, 
                 maxHeight: "98vh",
             }}
         >
@@ -68,7 +71,7 @@ export default function Content({ setShowSignBoard, setIsOpen }) {
             { !matches && <Divider /> }
             
 
-            <Box px={2} sx={{ maxHeight: "62vh", minHeight: "62vh" }}>
+            <Box px={2} sx={{ maxHeight: "65vh", minHeight: "65vh" }}>
                 <Stack direction="row" alignItems="center" justifyContent="space-between" pr={1} mb={2}>
                     <Typography variant="body" color="primary" fontWeight="bold">Categories</Typography>
                     <IconButton edge="end" aria-label="add" color="primary" onClick={() => setIsAddFormOpen(true)}>
@@ -87,8 +90,10 @@ export default function Content({ setShowSignBoard, setIsOpen }) {
                 <Uncategorized setShowSignBoard={setShowSignBoard} setIsOpen={setIsOpen} />
             </Box>
 
-            <Divider />
-            <UserBar />
+            <Box mt={1}>
+                <Divider />
+                <UserBar />
+            </Box>
         </Box>
     )
 }

@@ -18,11 +18,12 @@ export default function Main() {
     const { setUncategorized, setSignatures } = useSignatures()
     const [ loading, setLoading ] = useState(false)
 
+    const storedUser = getDataLS("auth-token")
+
     const checkLogin = async () => {
-        const storedUser = getDataLS("auth-token")
         if (storedUser) {
             const decodedToken = parseToken(storedUser)
-            if (decodedToken.exp * 1000 < Date.now()) {
+            if (decodedToken?.exp * 1000 < Date.now()) {
                 setUser({ isLoggedIn: false, token: null })
                 navigate("/")
                 setToast({ 
@@ -30,17 +31,19 @@ export default function Main() {
                     msg: "You session has expired. Please login again!", 
                     severity: "warning" 
                 })
-            } else {
+            } else if (decodedToken?.exp * 1000 >= Date.now()) {
                 navigate("/home")
                 setLoading(true)
-                const { passwordHash, ...data } = await Axios.getUser(decodedToken.id)
+                const { passwordHash, ...data } = await Axios.getUser(decodedToken?.id)
                 setUser({ ...data, isLoggedIn: true })
-                const userCategories = await Axios.getUserCategories(data.id)
+                const userCategories = await Axios.getUserCategories(data?.id)
                 const uncategorized = await Axios.getUncategorized()
                 setCategories(userCategories)
                 setUncategorized(uncategorized)
                 setSignatures(data.signatures)
                 setLoading(false)
+            } else {
+                navigate("/")
             }
         }
     }
@@ -53,7 +56,7 @@ export default function Main() {
     return (
         <main>
             <Home />
-
+            <p>{storedUser ? storedUser?.slice(0, 10) : null}</p>
             {loading && <Spinner />}
         </main>
     )

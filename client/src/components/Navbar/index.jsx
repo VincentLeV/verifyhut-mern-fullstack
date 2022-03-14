@@ -38,7 +38,7 @@ export default function Navbar({ setShowSignBoard }) {
             <Drawer
                 sx={{
                     width: 240,
-                    flexShrink: 0,
+                    flexShrink: 0
                 }}
                 variant="persistent"
                 open={isOpen}

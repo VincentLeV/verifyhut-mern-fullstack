@@ -8,7 +8,7 @@ export default function Uncategorized({ setShowSignBoard, setIsOpen }) {
     const { uncategorized } = useSignatures()
 
     return (
-        <Box mt={2} sx={{ overflowY: "auto", maxHeight: "25vh", minHeight: "25vh"}}>
+        <Box my={2} sx={{ overflow: "auto", maxHeight: "20vh" }}>
             {
                 uncategorized?.map((sig, i) => (
                     <SignatureBar 
