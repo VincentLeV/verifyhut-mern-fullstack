@@ -36,13 +36,12 @@ export default function UserBar() {
             direction="row" 
             justifyContent="space-between" 
             alignItems="center"
-            px={5}
-            py={2}
+            p={2}
         >
             
             <Stack direction="row" alignItems="center" >
                 <Avatar {...randomColorAvatar(user.name)} />
-                {user?.name && <Typography ml={2}>{user.name}</Typography>}
+                {user?.name && <Typography ml={1}>{user.name}</Typography>}
             </Stack>
             <IconButton 
                 size="small" 

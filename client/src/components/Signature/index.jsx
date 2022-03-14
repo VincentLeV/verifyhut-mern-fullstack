@@ -33,12 +33,15 @@ export default function Signature({ setShowSignBoard }) {
     const [ sigHeight, setSigHeight ] = useState(0)
 
     useEffect(() => {
-        const sigBase64 = Buffer.from(signature.image, 'base64').toString('binary')
-        const i = new Image()
-        i.src = sigBase64
-        i.onload = () => {
-            setSigHeight(i.height)
+        if (signature?.image) {
+            const sigBase64 = Buffer.from(signature.image, 'base64').toString('binary')
+            const i = new Image()
+            i.src = sigBase64
+            i.onload = () => {
+                setSigHeight(i.height)
+            }
         }
+        
     }, [signature])
 
     const handleDeleteSignature = async (e) => {

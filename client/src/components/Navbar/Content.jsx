@@ -40,7 +40,7 @@ export default function Content({ setShowSignBoard, setIsOpen }) {
     return (
         <Box
             role="presentation"
-            minWidth={280}
+            minWidth={325}
             pt={0.8}
             sx={{ maxHeight: "98vh" }}
         >
@@ -90,7 +90,7 @@ export default function Content({ setShowSignBoard, setIsOpen }) {
                 sx={{ 
                     height: "8vh", 
                     maxHeight: "8vh", 
-                    position: "absolute", bottom: "4vh", left: 0, right: 0,
+                    position: "absolute", bottom: "5vh", left: 0, right: 0,
                     background: "white"
                 }}
             >

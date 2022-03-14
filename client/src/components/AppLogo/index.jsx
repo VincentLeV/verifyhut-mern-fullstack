@@ -29,7 +29,7 @@ export default function AppLogo({ width, margin, padding, isDescription }) {
                         VerifyHut
                     </Typography>
                     <Typography variant="body">
-                        Verify any transaction for you
+                        Sign and verify any transaction for you
                     </Typography>
                 </>
             }

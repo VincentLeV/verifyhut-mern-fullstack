@@ -1,6 +1,6 @@
 import React, { useState, createRef } from "react"
 import { Box, Stack, Typography } from "@mui/material"
-import { grey } from "@mui/material/colors"
+import { blue } from "@mui/material/colors"
 
 import Canvas from "./Canvas"
 import ToolBar from "./ToolBar"
@@ -24,8 +24,8 @@ export default function SignBoard() {
             </Typography>
             <Box
                 sx={{ 
-                    border: '0.25rem solid', 
-                    borderColor: grey[400],
+                    // border: '0.25rem solid', 
+                    // borderColor: blue[800],
                     borderRadius: '0.25rem', 
                     height: "58vh", 
                     width: {sm: "100%", lg: "50vw"}, 

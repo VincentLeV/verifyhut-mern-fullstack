@@ -39,6 +39,7 @@ export default function LoginForm({ setLoading }) {
                 navigate("/home")
             }, 700)
         } catch(err) {
+            setLoading(false)
             setValues({ username: values.username, password: "" })
             setErrMsg(err?.response?.data?.message)
         }

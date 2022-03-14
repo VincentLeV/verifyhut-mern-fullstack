@@ -32,6 +32,7 @@ export default function SignUpForm({ setShowSignUpForm }) {
                 setToast({ isOpen: true, msg: "Successfully created a new user!" })
             }, 1000)
         } catch (err) {
+            setLoading(false)
             if (values.password === "") {
                 setValidation({ input: "password", msg: "Password is required" })
             } else if (err?.response?.data?.message?.includes("Password")) {
