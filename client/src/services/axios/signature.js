@@ -1,13 +1,12 @@
 import axios from "axios"
 import { baseUrl } from "."
 
-export const getUncategorized = async () => {
-    const req = await axios.get(`${baseUrl}/api/signatures/uncategorized`)
+export const getUncategorized = async (id) => {
+    const req = await axios.get(`${baseUrl}/api/signatures/uncategorized/user/${id}`)
     return req.data
 }
 
 export const addSignature = async (data, token) => {
-    console.log(data)
     const res = await axios.post(`${baseUrl}/api/signatures`, data, {
         headers: {
             "Authorization": `Bearer ${token}` 

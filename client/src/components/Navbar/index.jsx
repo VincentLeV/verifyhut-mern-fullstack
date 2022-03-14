@@ -15,8 +15,21 @@ export default function Navbar({ setShowSignBoard }) {
     const matches = useMediaQuery('(max-width: 1700px)')
     const [ isOpen, setIsOpen ] = useState(matches ? false : true)
 
+    const handleClickBackDrop = () => {
+        setIsOpen(false)
+    }
+
     return (
         <Box sx={{ display: 'flex' }}>
+            {
+                isOpen &&
+                <Box 
+                    position="absolute" 
+                    sx={{ inset: 2 }} 
+                    onClick={handleClickBackDrop}
+                />
+            }
+
             <AppBar 
                 position="fixed"
                 open={isOpen} 

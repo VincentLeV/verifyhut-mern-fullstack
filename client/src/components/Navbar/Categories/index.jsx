@@ -16,7 +16,7 @@ export default function Categories({ setShowSignBoard, setIsOpen, isAddFormOpen,
     const [ isEditFormOpen, setIsEditFormOpen ] = useState(false)
 
     return (
-        <Box pb={1} px={2} mb={2} sx={{ overflowY: "auto", maxHeight: "31vh" }}>   
+        <Box pb={1} px={2} mb={2} sx={{ overflowY: "auto", maxHeight: "31vh", minHeight: "30vh" }}>   
             {categories?.length === 0 && <Typography variant="body">No Category</Typography>}
 
             {categories?.map((category, i) => (

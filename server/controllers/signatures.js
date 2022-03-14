@@ -9,8 +9,8 @@ signatureRouter.get("/", async (_, res) => {
     successHandler(res, signatures, 200)
 })
 
-signatureRouter.get("/uncategorized", async (_, res) => {
-    const signatures = await Signature.find({ category: undefined })
+signatureRouter.get("/uncategorized/user/:id", async (req, res) => {
+    const signatures = await Signature.find({ category: undefined, user: req.params.id })
     successHandler(res, signatures, 200)
 })
 

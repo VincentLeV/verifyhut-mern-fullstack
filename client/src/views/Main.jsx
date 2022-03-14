@@ -37,7 +37,7 @@ export default function Main() {
                 const { passwordHash, ...data } = await Axios.getUser(decodedToken?.id)
                 setUser({ ...data, isLoggedIn: true })
                 const userCategories = await Axios.getUserCategories(data?.id)
-                const uncategorized = await Axios.getUncategorized()
+                const uncategorized = await Axios.getUncategorized(data?.id)
                 setCategories(userCategories)
                 setUncategorized(uncategorized)
                 setSignatures(data.signatures)

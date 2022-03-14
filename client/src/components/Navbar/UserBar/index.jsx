@@ -1,6 +1,12 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
-import { Stack, Avatar, Tooltip, IconButton } from "@mui/material"
+import { 
+    Stack, 
+    Avatar, 
+    Tooltip, 
+    IconButton, 
+    Typography
+} from "@mui/material"
 import LogoutIcon from "@mui/icons-material/Logout"
 import { randomColorAvatar } from "../../../utils/helpers"
 import { useUser } from "../../../context/UserContext"
@@ -31,9 +37,13 @@ export default function UserBar() {
             justifyContent="space-between" 
             alignItems="center"
             px={5}
-            sx={{ height: "8vh", maxHeight: "8vh" }}
+            py={2}
         >
-            <Avatar {...randomColorAvatar(user.name)} />
+            
+            <Stack direction="row" alignItems="center" >
+                <Avatar {...randomColorAvatar(user.name)} />
+                {user?.name && <Typography ml={2}>{user.name}</Typography>}
+            </Stack>
             <IconButton 
                 size="small" 
                 color="primary"
