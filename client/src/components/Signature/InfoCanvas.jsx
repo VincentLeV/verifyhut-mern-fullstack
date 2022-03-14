@@ -22,7 +22,7 @@ export default function InfoCanvas({
         )
         const infoBase64 =  getInfoBase64(canvasEl)
         setInfoBase64(infoBase64)
-    }, [sigHeight])
+    }, [sigHeight, signerName, createdAt, reason, setInfoBase64])
 
     return (
         <canvas 
