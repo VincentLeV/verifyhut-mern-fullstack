@@ -4,17 +4,22 @@ import { Typography, Box } from "@mui/material"
 import LoginForm from "../components/LoginForm"
 import SignUpForm from "../components/SignUpForm"
 import AppLogo from "../components/AppLogo"
+import Spinner from "../components/Spinner"
 
 export default function Onboarding() {
     const [ showSignUpForm, setShowSignUpForm ] = useState(false)
+    const [ loading, setLoading ] = useState(false)
 
     return (
         <Box>
             <AppLogo isDescription={true} />
+
+            {loading && <Spinner />}
+
             {
                 showSignUpForm 
-                ? <SignUpForm setShowSignUpForm={setShowSignUpForm} /> 
-                : <LoginForm setShowSignUpForm={setShowSignUpForm} />
+                ? <SignUpForm setShowSignUpForm={setShowSignUpForm} setLoading={setLoading} /> 
+                : <LoginForm setShowSignUpForm={setShowSignUpForm} setLoading={setLoading} />
             }
             {
                 showSignUpForm

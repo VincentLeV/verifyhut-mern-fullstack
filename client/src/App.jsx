@@ -25,7 +25,8 @@ function App() {
             <CategoryProvider>
             <SignatureProvider>
                 <Routes>
-                    <Route path="*" index element={<Onboarding />} />
+                    <Route path="*" element={<Onboarding />} />
+                    <Route path="/" element={<Onboarding />} />
                     <Route path="/home" element={<Main />} />
                 </Routes>            
                 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { getDataLS, parseToken } from "../utils/helpers"
 import { useUser } from "../context/UserContext"
@@ -8,6 +8,7 @@ import { useCategories } from "../context/CategoryContext"
 import { useSignatures } from "../context/SignatureContext"
 
 import Home from "./Home"
+import Spinner from "../components/Spinner"
 
 export default function Main() {
     const navigate = useNavigate()
@@ -15,6 +16,7 @@ export default function Main() {
     const { setToast } = useToast()
     const { setCategories } = useCategories()
     const { setUncategorized, setSignatures } = useSignatures()
+    const [ loading, setLoading ] = useState(false)
 
     const checkLogin = async () => {
         const storedUser = getDataLS("auth-token")
@@ -29,6 +31,8 @@ export default function Main() {
                     severity: "warning" 
                 })
             } else {
+                navigate("/home")
+                setLoading(true)
                 const { passwordHash, ...data } = await Axios.getUser(decodedToken.id)
                 setUser({ ...data, isLoggedIn: true })
                 const userCategories = await Axios.getUserCategories(data.id)
@@ -36,6 +40,7 @@ export default function Main() {
                 setCategories(userCategories)
                 setUncategorized(uncategorized)
                 setSignatures(data.signatures)
+                setLoading(false)
             }
         }
     }
@@ -48,6 +53,8 @@ export default function Main() {
     return (
         <main>
             <Home />
+
+            {loading && <Spinner />}
         </main>
     )
 }

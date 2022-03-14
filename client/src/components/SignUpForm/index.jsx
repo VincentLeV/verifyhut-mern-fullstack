@@ -8,22 +8,29 @@ import {
 import Axios from "../../services/axios"
 import { useToast } from "../../context/ToastContext"
 
+import Spinner from "../Spinner"
+
 export default function SignUpForm({ setShowSignUpForm }) {
     const { setToast } = useToast()
     const [ values, setValues ] = useState({ username: "", name: "", password: "" })
     const [ validation, setValidation ] = useState({ input: "", msg: "" })
+    const [ loading, setLoading ] = useState(false)
 
     const inputChanged = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
     }
 
     const handleSignUp = async (e) => {
+        setLoading(true)
         e.preventDefault()
         try {
             await Axios.createUser(values)
             setValues({ username: "", name: "", password: "" })
-            setShowSignUpForm(false)
-            setToast({ isOpen: true, msg: "Successfully created a new user!" })
+            setTimeout(() => {
+                setLoading(false)
+                setShowSignUpForm(false)
+                setToast({ isOpen: true, msg: "Successfully created a new user!" })
+            }, 1000)
         } catch (err) {
             if (values.password === "") {
                 setValidation({ input: "password", msg: "Password is required" })
@@ -47,6 +54,7 @@ export default function SignUpForm({ setShowSignUpForm }) {
             autoComplete="off"
             onSubmit={handleSignUp}
         >
+            {loading && <Spinner />}
             <FormControl fullWidth sx={{ mb: 2 }}>
                 <TextField
                     autoComplete="off"
