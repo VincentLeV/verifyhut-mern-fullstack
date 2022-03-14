@@ -66,7 +66,7 @@ export default function Content({ setShowSignBoard, setIsOpen }) {
                 </Box>
             </Stack>
 
-            <Box px={2} sx={{ minHeight: "65vh", maxHeight: "80vh" }}>
+            <Box px={2} sx={{ minHeight: "65vh", maxHeight: "75vh" }}>
                 <Stack direction="row" alignItems="center" justifyContent="space-between" pr={1} mb={2}>
                     <Typography variant="body" color="primary" fontWeight="bold">Categories</Typography>
                     <IconButton edge="end" aria-label="add" color="primary" onClick={() => setIsAddFormOpen(true)}>
@@ -90,7 +90,8 @@ export default function Content({ setShowSignBoard, setIsOpen }) {
                 sx={{ 
                     height: "8vh", 
                     maxHeight: "8vh", 
-                    position: "absolute", bottom: "5vh", left: 0, right: 0
+                    position: "absolute", bottom: "4vh", left: 0, right: 0,
+                    background: "white"
                 }}
             >
                 <Divider />

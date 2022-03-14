@@ -25,7 +25,7 @@ export default function Navbar({ setShowSignBoard }) {
                 isOpen &&
                 <Box 
                     position="absolute" 
-                    sx={{ inset: 2 }} 
+                    sx={{ inset: 10 }} 
                     onClick={handleClickBackDrop}
                 />
             }
