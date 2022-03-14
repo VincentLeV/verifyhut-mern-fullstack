@@ -13,7 +13,7 @@ export default function SignBoard() {
     const [ initialVal, setInitialVal ] = useState({ image: "", svg: "", createdAt: "" })
 
     return (
-        <Stack alignItems="center" mt={8} ml={0} px={2}>
+        <Stack alignItems="center" pt={7} m={0}>
             <Typography 
                 variant="h5" 
                 fontWeight="bold"
@@ -28,10 +28,10 @@ export default function SignBoard() {
                     borderColor: grey[400],
                     borderRadius: '0.25rem', 
                     height: "55vh", 
-                    width: {sm: "95%", lg: "50vw"}, 
-                    margin: {sm: "auto", lg: "auto 0 auto 12vw"},
+                    width: {sm: "100%", lg: "50vw"}, 
+                    margin: {sm: "auto", lg: "0 0 0 12vw"},
                 }}
-            >
+            > 
                 <Canvas canvas={canvas} />
 
                 <ToolBar 

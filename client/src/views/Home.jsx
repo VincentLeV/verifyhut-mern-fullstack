@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box } from "@mui/material"
+import { Box, Container } from "@mui/material"
 
 import NavBar from "../components/Navbar"
 import SignBoard from "../components/SignBoard"
@@ -9,7 +9,7 @@ export default function Home() {
     const [ showSignBoard, setShowSignBoard ] = useState(true)
 
     return (
-        <Box>
+        <Container>
             <NavBar setShowSignBoard={setShowSignBoard} />
 
             { 
@@ -17,6 +17,6 @@ export default function Home() {
                 ? <SignBoard /> 
                 : <Signature setShowSignBoard={setShowSignBoard} />
             }
-        </Box>
+        </Container>
     )
 }

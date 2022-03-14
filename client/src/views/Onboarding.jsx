@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Typography } from "@mui/material"
+import { Typography, Box } from "@mui/material"
 
 import LoginForm from "../components/LoginForm"
 import SignUpForm from "../components/SignUpForm"
@@ -9,7 +9,7 @@ export default function Onboarding() {
     const [ showSignUpForm, setShowSignUpForm ] = useState(false)
 
     return (
-        <div>
+        <Box>
             <AppLogo isDescription={true} />
             {
                 showSignUpForm 
@@ -35,6 +35,6 @@ export default function Onboarding() {
                     Don't have account yet? Sign up now
                 </Typography>
             }
-        </div>
+        </Box>
     )
 }
