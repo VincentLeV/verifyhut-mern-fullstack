@@ -3,10 +3,13 @@ import { wait } from "@testing-library/user-event/dist/utils"
 describe("VerifyHut App", function() {
     before(function() {
         cy.request( "POST", "api/testing/reset" )
+        wait(400)
         cy.log("**Create user**")
         cy.createUser({ username: "user", name: "Root User", password: "password" })
+        wait(400)
         cy.log("**Create Category**")
         cy.createCategory({ username: "user", password: "password", name: "General" })
+        wait(400)
         cy.log("**Create Signature**")
         cy.createSignature({ 
             username: "user", 
@@ -16,8 +19,8 @@ describe("VerifyHut App", function() {
             signer_name: "Vincent Le",
             reason: "Buy coffee machine"
         })
+        wait(400)
         cy.visit("http://localhost:3000")
-        wait(300)
     })
 
     it("front page can be opened", function() {
@@ -33,7 +36,7 @@ describe("VerifyHut App", function() {
         cy.get('#signup-form input[name="username"]').type("vincentle")
         cy.get('#signup-form input[name="password"]').type("password")
         cy.get("#signup-btn").click()
-        wait(400)
+        wait(500)
         cy.location().should(loc => {
             expect(loc.pathname).to.eq("/")
         })
@@ -44,7 +47,7 @@ describe("VerifyHut App", function() {
         cy.get('#login-form input[name="username"]').type("vincentle")
         cy.get('#login-form input[name="password"]').type("password")
         cy.get("#login-btn").click()
-        wait(400)
+        wait(500)
         cy.location().should(loc => {
             expect(loc.pathname).to.eq("/home")
         })
@@ -57,6 +60,7 @@ describe("VerifyHut App", function() {
     describe("Category", function() {
         beforeEach(function() {
             cy.saveToken({ username: "vincentle", password: "password" })
+            wait(500)
         })
 
         it("can add category", function() {
@@ -97,6 +101,7 @@ describe("VerifyHut App", function() {
     describe("Signature", function() {
         beforeEach(function() {
             cy.saveToken({ username: "vincentle", password: "password" })
+            wait(500)
         })
 
         it("can create uncategorized signature", function() {
