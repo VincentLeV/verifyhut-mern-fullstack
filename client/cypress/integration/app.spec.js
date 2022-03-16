@@ -44,7 +44,7 @@ describe("VerifyHut App", function() {
 
     it("can login", function() {
         cy.log("**Login**")
-        cy.get('#login-form input[name="username"]').type("vincentle")
+        cy.get('#login-form input[name="username"]').type("user")
         wait(300)
         cy.get('#login-form input[name="password"]').type("password")
         wait(300)
@@ -54,7 +54,7 @@ describe("VerifyHut App", function() {
             expect(loc.pathname).to.eq("/home")
         })
         cy.contains("Sign Here")
-        cy.contains("Vincent Le")
+        cy.contains("Root User")
         cy.contains("No Category")
         cy.contains("No Uncategorized Signature")
     })
