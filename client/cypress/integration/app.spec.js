@@ -45,9 +45,11 @@ describe("VerifyHut App", function() {
     it("can login", function() {
         cy.log("**Login**")
         cy.get('#login-form input[name="username"]').type("vincentle")
+        wait(300)
         cy.get('#login-form input[name="password"]').type("password")
+        wait(300)
         cy.get("#login-btn").click()
-        wait(500)
+        wait(1000)
         cy.location().should(loc => {
             expect(loc.pathname).to.eq("/home")
         })
@@ -73,6 +75,7 @@ describe("VerifyHut App", function() {
             cy.get("#add-category-btn").click()
             wait(300)
             cy.get('#add-category-form input[name="name"]').type("Misc")
+            wait(300)
             cy.get("#add-category-form #add-category-btn").click()
             cy.contains("Successfully created category!")
         })
@@ -92,6 +95,7 @@ describe("VerifyHut App", function() {
         it("can delete category", function() {
             cy.get("#categories").children().eq(1).click()
             cy.get(".delete-category-btn").eq(1).click()
+            wait(300)
             cy.get("#alert-confirm-btn").click()
             cy.get("#categories").should('have.length', 1)
             cy.contains("Successfully deleted category!")
@@ -109,6 +113,7 @@ describe("VerifyHut App", function() {
             cy.get("#signboard #signboard-save-btn").click()
             wait(300)
             cy.get("#add-signature-form input[name='signer_name']").type("Vincent Le")
+            wait(300)
             cy.get("#add-signature-form textarea[name='reason']").type("Bought Stuff")
             wait(300)
             cy.get("#add-signature-btn").click()
@@ -138,6 +143,7 @@ describe("VerifyHut App", function() {
         it("can delete signature", function() {
             cy.get(".delete-signature-btn").eq(0).click({ force: true })
             cy.get("#alert-confirm-btn").click()
+            wait(300)
             cy.contains("Successfully deleted signature")
             wait(300)
             cy.get(".signature-bar").should("have.length", 1)
