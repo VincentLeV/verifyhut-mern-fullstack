@@ -12,7 +12,7 @@ export default function SignBoard() {
     const [ initialVal, setInitialVal ] = useState({ image: "", svg: "", createdAt: "" })
 
     return (
-        <Stack alignItems="center" pt={7} m={0}>
+        <Stack alignItems="center" pt={7} m={0} id="signboard">
             <Typography 
                 variant="h5" 
                 fontWeight="bold"

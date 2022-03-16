@@ -6,7 +6,8 @@ import {
     Typography
 } from "@mui/material"
 import Clear from "@mui/icons-material/Clear"
-import { red } from "@mui/material/colors"
+import EditIcon from "@mui/icons-material/Edit"
+import { red, yellow } from "@mui/material/colors"
 import moment from "moment-mini"
 import { useCategories } from "../../../context/CategoryContext"
 import { useToast } from "../../../context/ToastContext"
@@ -16,7 +17,15 @@ import Axios from "../../../services/axios"
 import { getDataLS } from "../../../utils/helpers"
 import useMediaQuery from "@mui/material/useMediaQuery"
 
-export default function SignatureBar({ signature, category, setShowSignBoard, setIsOpen }) {
+export default function SignatureBar({ 
+    signature, 
+    category, 
+    setShowSignBoard, 
+    setIsOpen,
+    setIsEditSigOpen,
+    setSelectedSig,
+    setSelected
+}) {
     const matches = useMediaQuery("(min-width: 1024px)")
     const { categories, setCategories, setCategory } = useCategories()
     const { setToast } = useToast()
@@ -49,6 +58,12 @@ export default function SignatureBar({ signature, category, setShowSignBoard, se
         } 
     }
 
+    const openEditSignatureForm = async () => {
+        setIsEditSigOpen(true)
+        setSelectedSig(signature)
+        setSelected(category)
+    }
+
     const handleClick = () => {
         !matches && setIsOpen(false)
         setShowSignBoard(false)
@@ -57,7 +72,7 @@ export default function SignatureBar({ signature, category, setShowSignBoard, se
     }
 
     return (
-        <Stack direction="row" alignItems="center" mb={1}>
+        <Stack direction="row" alignItems="center" mb={1} className="signature-bar">
             <Button 
                 size="small"
                 variant="outlined"
@@ -68,7 +83,23 @@ export default function SignatureBar({ signature, category, setShowSignBoard, se
                     {moment(signature.createdAt).format("DD-MM-YYYY hh:mm A")}
                 </Typography>
             </Button> 
+
             <Box 
+                className="edit-signature-btn"
+                pt={0.4}
+                px={0.4}
+                ml={1}
+                border="1px solid"
+                borderRadius="4px"
+                borderColor={yellow[900]}
+                onClick={openEditSignatureForm}
+                sx={{ cursor: "pointer" }}
+            >
+                <EditIcon fontSize="small" color="warning" />
+            </Box>
+
+            <Box 
+                className="delete-signature-btn"
                 pt={0.4}
                 px={0.4}
                 ml={1}

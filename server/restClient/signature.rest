@@ -6,7 +6,7 @@ GET http://localhost:5000/api/signatures/uncategorized
 
 ###
 
-GET http://localhost:5000/api/signatures
+GET http://localhost:5000/api/signatures/622f7c748331cfef2884d09e
 
 ###
 
@@ -22,6 +22,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZ
 }
 
 ### 
+
+PATCH http://localhost:5000/api/signatures/62310c983df669186958c825
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJpZCI6IjYyMmUwNDdmZTMzYzZiNzcyNGE2MGUzNCIsImlhdCI6MTY0NzM4MTM0MSwiZXhwIjoxNjQ3Mzg0OTQxfQ.fJXZVq3IM4VhL1Ku6KVc5IN3eQSx8bePc24AW5PNLOw
+
+{
+    "category": "622f9e6bc48220d2e19c0b54"
+}
+
+###
 
 DELETE http://localhost:5000/api/signatures/6228e3647c80e6b6dc9c6203
 Content-Type: application/json

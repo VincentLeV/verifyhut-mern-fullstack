@@ -31,7 +31,12 @@ app.use( "/api/login", loginRouter )
 app.use( "/api/categories", categoryRouter )
 app.use( "/api/signatures", signatureRouter )
 
-app.get( "/", (req, res) => {
+if (process.env.NODE_ENV === "test") {  
+    const testingRouter = require("./controllers/testing")  
+    app.use("/api/testing", testingRouter)
+}
+
+app.get( "/", (_, res) => {
     res.send("Server is running")
 })
 

@@ -15,7 +15,7 @@ import { useCategories } from "../../context/CategoryContext"
 import { useSignatures } from "../../context/SignatureContext"
 import moment from "moment-mini"
 
-import CategorySelect from "./CategorySelect"
+import CategorySelect from "../CategorySelect"
 
 export default function AddSignature({ 
     isAddFormOpen, 
@@ -81,7 +81,7 @@ export default function AddSignature({
     }
 
     return (
-        <Dialog open={isAddFormOpen} onClose={handleClose}>
+        <Dialog open={isAddFormOpen} onClose={handleClose} id="add-signature-form">
             <DialogTitle>Add Signature</DialogTitle>
             <DialogContent>
                 <img 
@@ -137,7 +137,7 @@ export default function AddSignature({
             
             <DialogActions>
                 <Button onClick={handleClose}>Cancel</Button>
-                <Button type="submit" onClick={handleAddSignature}>Add</Button>
+                <Button id="add-signature-btn" type="submit" onClick={handleAddSignature}>Add</Button>
             </DialogActions>
         </Dialog>
     )

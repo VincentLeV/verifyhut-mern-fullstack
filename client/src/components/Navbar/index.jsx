@@ -27,6 +27,7 @@ export default function Navbar({ setShowSignBoard }) {
                     position="absolute" 
                     sx={{ inset: 10 }} 
                     onClick={handleClickBackDrop}
+                    id="navbar-backdrop"
                 />
             }
 
@@ -37,6 +38,7 @@ export default function Navbar({ setShowSignBoard }) {
             >
                 <Toolbar>
                     <IconButton
+                        id="hamburger"
                         color="inherit"
                         aria-label="open navbar"
                         onClick={() => setIsOpen(true)}

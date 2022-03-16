@@ -34,15 +34,21 @@ export default function Main() {
             } else if (decodedToken?.exp * 1000 >= Date.now()) {
                 navigate("/home")
                 setLoading(true)
-                const data = await Axios.getUser(decodedToken?.id)
-                delete data.passwordHash
-                setUser({ ...data, isLoggedIn: true })
-                const userCategories = await Axios.getUserCategories(data?.id)
-                const uncategorized = await Axios.getUncategorized(data?.id)
-                setCategories(userCategories)
-                setUncategorized(uncategorized)
-                setSignatures(data.signatures)
-                setLoading(false)
+                try {
+                    const data = await Axios.getUser(decodedToken?.id)
+                    delete data.passwordHash
+                    setUser({ ...data, isLoggedIn: true })
+                    const userCategories = await Axios.getUserCategories(data?.id)
+                    const uncategorized = await Axios.getUncategorized(data?.id)
+                    setCategories(userCategories)
+                    setUncategorized(uncategorized)
+                    setSignatures(data.signatures)
+                    setLoading(false)
+                } catch (err) {
+                    setLoading(false)
+                    navigate("/")
+                    localStorage.clear()
+                }
             } else {
                 navigate("/")
             }

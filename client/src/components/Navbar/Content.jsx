@@ -18,6 +18,9 @@ import AppLogo from "../AppLogo"
 export default function Content({ setShowSignBoard, setIsOpen }) {
     const matches = useMediaQuery("(max-width: 1700px)")
     const [ isAddFormOpen, setIsAddFormOpen ] = useState(false)
+    const [ isEditSigOpen, setIsEditSigOpen ] = useState(false)
+    const [ selectedSig, setSelectedSig ] = useState(null)
+    const [ selectedCate, setSelectedCate ] = useState(null)
 
     const toggleNavbar = (e) => {
         if (
@@ -69,7 +72,7 @@ export default function Content({ setShowSignBoard, setIsOpen }) {
             <Box px={2} sx={{ minHeight: "65vh", maxHeight: "75vh" }}>
                 <Stack direction="row" alignItems="center" justifyContent="space-between" pr={1} mb={2}>
                     <Typography variant="body" color="primary" fontWeight="bold">Categories</Typography>
-                    <IconButton edge="end" aria-label="add" color="primary" onClick={() => setIsAddFormOpen(true)}>
+                    <IconButton id="add-category-btn"edge="end" aria-label="add" color="primary" onClick={() => setIsAddFormOpen(true)}>
                         <AddCircleIcon />
                     </IconButton>
                 </Stack>
@@ -79,10 +82,23 @@ export default function Content({ setShowSignBoard, setIsOpen }) {
                     setIsOpen={setIsOpen} 
                     isAddFormOpen={isAddFormOpen}
                     setIsAddFormOpen={setIsAddFormOpen}
+                    setIsEditSigOpen={setIsEditSigOpen}
+                    setSelectedSig={setSelectedSig}
+                    selectedCate={selectedCate}
+                    setSelectedCate={setSelectedCate}
                 />
                 
                 <Typography variant="body" color="primary" fontWeight="bold">Uncategorized</Typography>
-                <Uncategorized setShowSignBoard={setShowSignBoard} setIsOpen={setIsOpen} />
+                <Uncategorized 
+                    setShowSignBoard={setShowSignBoard} 
+                    setIsOpen={setIsOpen} 
+                    isEditSigOpen={isEditSigOpen}
+                    setIsEditSigOpen={setIsEditSigOpen}
+                    selectedSig={selectedSig}
+                    setSelectedSig={setSelectedSig}
+                    selectedCate={selectedCate}
+                    setSelectedCate={setSelectedCate}
+                />
             </Box>
 
             <Box 

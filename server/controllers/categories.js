@@ -43,9 +43,8 @@ categoryRouter.put("/:id", tokenExtractor, async (req, res, next) => {
         const updatedCategory = await Category.findByIdAndUpdate( req.params.id, req.body, { new: true } )
         updatedCategory ? successHandler(res, updatedCategory, 200) : next(new Error("can't save to db"))
     } else {
-        return next(new Error("invalid signature"))
+        return next(new Error("invalid user"))
     }  
-
 })
 
 categoryRouter.delete("/:id", tokenExtractor, async (req, res, next) => {
@@ -61,7 +60,7 @@ categoryRouter.delete("/:id", tokenExtractor, async (req, res, next) => {
         await user.save({ validateModifiedOnly: true })
         return successHandler(res, category, 204)
     } else {
-        return next(new Error("invalid signature"))
+        return next(new Error("invalid user"))
     }  
 })
 

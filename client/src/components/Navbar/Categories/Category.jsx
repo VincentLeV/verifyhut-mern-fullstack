@@ -5,7 +5,7 @@ import {
     AccordionDetails,
     AccordionActions,
     Typography,
-    IconButton,
+    Button,
     Divider,
 } from "@mui/material"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
@@ -28,7 +28,9 @@ export default function Category({
     setIsEditFormOpen,
     setSelected,
     setShowSignBoard,
-    setIsOpen
+    setIsOpen,
+    setIsEditSigOpen,
+    setSelectedSig
 }) {
     const { isConfirmed } = useAlert()
     const { setToast } = useToast()
@@ -77,33 +79,38 @@ export default function Category({
                     <SignatureBar 
                         key={i} 
                         signature={sig} 
-                        category={category} 
+                        category={category}
+                        setSelectedSig={setSelectedSig} 
                         setShowSignBoard={setShowSignBoard} 
                         setIsOpen={setIsOpen}
+                        setIsEditSigOpen={setIsEditSigOpen}
+                        setSelected={setSelected}
                     />
                 ))}
             </AccordionDetails>
             <Divider />
             <AccordionActions>
-                <IconButton 
+                <Button 
                     size="small" 
-                    variant="contained" 
+                    variant="text" 
                     sx={{ color: amber[800] }}
                     onClick={handleEditCategory}
+                    className="edit-category-btn"
                 >
                     <EditIcon fontSize="small" />
                     <Typography variant="subtitle2" ml={0.3}>Edit</Typography>
-                </IconButton>
+                </Button>
 
-                <IconButton 
+                <Button 
                     size="small" 
-                    variant="contained" 
+                    variant="text" 
                     sx={{ color: red[600] }}
                     onClick={handleDeleteCategory}
+                    className="delete-category-btn"
                 >
                     <DeleteOutlineIcon fontSize="small"/>
                     <Typography variant="subtitle2" ml={0.3}>Delete</Typography>
-                </IconButton>
+                </Button>
             </AccordionActions>
         </Accordion>
     )

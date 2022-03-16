@@ -15,6 +15,15 @@ export const addSignature = async (data, token) => {
     return res.data
 }
 
+export const updateSignature = async (id, data, token) => {
+    const res = await axios.patch(`${baseUrl}/api/signatures/${id}`, data, {
+        headers: {
+            "Authorization": `Bearer ${token}` 
+        }
+    })
+    return res.data
+}
+
 export const deleteSignature = async (id, token) => {
     const res = await axios.delete(`${baseUrl}/api/signatures/${id}`, {
         headers: {

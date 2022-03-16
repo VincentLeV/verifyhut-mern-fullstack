@@ -14,6 +14,7 @@ import {
 import { 
     getUncategorized,
     addSignature, 
+    updateSignature,
     deleteSignature 
 } from "./signature"
 import { login } from "./authentication"
@@ -33,6 +34,7 @@ const Axios = {
     deleteCategory,
     getUncategorized,
     addSignature,
+    updateSignature,
     deleteSignature
 }
 

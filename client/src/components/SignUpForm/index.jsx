@@ -46,6 +46,7 @@ export default function SignUpForm({ setShowSignUpForm }) {
     return (
         <Box
             component="form"
+            id="signup-form"
             sx={{
                 "& .MuiTextField-root": { width: "100%" },  
                 width: { sm: "100%", md: "40%" },
@@ -99,6 +100,7 @@ export default function SignUpForm({ setShowSignUpForm }) {
                 variant="contained"
                 fullWidth
                 type="submit"
+                id="signup-btn"
                 onClick={handleSignUp}
             >
                 Sign Up

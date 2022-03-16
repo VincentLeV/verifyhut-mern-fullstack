@@ -32,6 +32,7 @@ export default function Onboarding() {
                     Already have account? Go back
                     </Typography>
                     : <Typography 
+                        id="create-user-link"
                         className="link"
                         variant="subtitle2"
                         sx={{ textAlign: "center", cursor: "pointer" }}

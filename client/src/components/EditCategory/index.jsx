@@ -36,7 +36,7 @@ export default function EditCategory({
             const token = getDataLS("auth-token")
             const data = await Axios.updateCategory(selected.id, values, token)
             const index = categories.findIndex(x => x.id === data.id)
-            setCategories([ ...categories.slice(0, index), data ])
+            setCategories([ ...categories.slice(0, index), data, ...categories.slice(index + 1) ])
             setIsEditFormOpen(false)
             setToast({ isOpen: true, msg: "Successfully edited category!" })
         } catch (err) {
@@ -45,7 +45,7 @@ export default function EditCategory({
     }
 
     return (
-        <Dialog open={isEditFormOpen} onClose={handleClose}>
+        <Dialog open={isEditFormOpen} onClose={handleClose} id="edit-category-form">
             <DialogTitle>Edit Category</DialogTitle>
             <DialogContent>
                 <Box component="form" onSubmit={handleEditCategory} p={0}>
@@ -64,7 +64,7 @@ export default function EditCategory({
             
             <DialogActions>
                 <Button onClick={handleClose}>Cancel</Button>
-                <Button type="submit" onClick={handleEditCategory}>Edit</Button>
+                <Button id="edit-category-btn" type="submit" onClick={handleEditCategory}>Edit</Button>
             </DialogActions>
         </Dialog>
     )

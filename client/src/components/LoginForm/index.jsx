@@ -49,6 +49,7 @@ export default function LoginForm({ setLoading }) {
     return (
         <Box
             component="form"
+            id="login-form"
             sx={{
                 "& .MuiTextField-root": { width: "100%" },  
                 width: { sm: "100%", md: "40%" },
@@ -92,6 +93,7 @@ export default function LoginForm({ setLoading }) {
             </FormControl>
             
             <Button 
+                id="login-btn"
                 variant="contained"
                 fullWidth
                 type="submit"

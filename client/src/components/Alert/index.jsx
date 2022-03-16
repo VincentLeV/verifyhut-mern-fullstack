@@ -30,7 +30,7 @@ export default function Alert() {
             </DialogContent>
             <DialogActions>
                 <Button onClick={alert.cancel} sx={{ color: grey[500] }}>Cancel</Button>
-                <Button onClick={alert.proceed} autoFocus sx={{ color: alert.color ? alert.color : red[600] }}>
+                <Button id="alert-confirm-btn" onClick={alert.proceed} autoFocus sx={{ color: alert.color ? alert.color : red[600] }}>
                     Confirm
                 </Button>
             </DialogActions>

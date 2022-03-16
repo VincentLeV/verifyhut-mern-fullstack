@@ -29,7 +29,7 @@ export default function ToolBar({ canvas, setIsAddFormOpen, setInitialVal }) {
     }
 
     return (
-        <Toolbar>
+        <Toolbar id="signboard-toolbar">
             <ButtonGroup size="small" sx={{ margin: "auto" }}>
                 <Button key={2} onClick={() => canvas.current.undo()}>
                     <Undo />
@@ -37,7 +37,7 @@ export default function ToolBar({ canvas, setIsAddFormOpen, setInitialVal }) {
                 <Button key={3} onClick={() => canvas.current.redo()}>
                     <Redo />
                 </Button>
-                <Button key={6} onClick={openAddSignatureDialog}>
+                <Button key={6} onClick={openAddSignatureDialog} id="signboard-save-btn">
                     <Save />
                 </Button>
                 <Button key={4} onClick={handleExportPng}>

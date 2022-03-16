@@ -43,7 +43,7 @@ export default function AddCategory({
     }
 
     return (
-        <Dialog open={isAddFormOpen} onClose={handleClose}>
+        <Dialog open={isAddFormOpen} onClose={handleClose} id="add-category-form">
             <DialogTitle>Add Category</DialogTitle>
             <DialogContent>
                 <Box component="form" onSubmit={handleAddCategory} p={0}>
@@ -62,7 +62,7 @@ export default function AddCategory({
             
             <DialogActions>
                 <Button onClick={handleClose}>Cancel</Button>
-                <Button type="submit" onClick={handleAddCategory}>Add</Button>
+                <Button type="submit" onClick={handleAddCategory} id="add-category-btn">Add</Button>
             </DialogActions>
         </Dialog>
     )

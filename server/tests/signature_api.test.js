@@ -37,6 +37,7 @@ beforeEach(async () => {
 
     const signature = new Signature({ 
         image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD", 
+        svg: "<svg></svg>",
         signer_name: "Root User", 
         reason: "Pay for stuff",
         category: categoryId,
@@ -71,6 +72,7 @@ describe("Create Signature", () => {
     test("creation fail without authorization", async () => {
         const signature = { 
             image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD", 
+            svg: "<svg></svg>",
             signer_name: "Root User", 
             reason: "Pay for stuff"
         }
@@ -88,6 +90,7 @@ describe("Create Signature", () => {
         const signatures = await Signature.find({})
         const newSignature = { 
             image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABEGWAgAAAQABAAD", 
+            svg: "<svg></svg>",
             signer_name: "Root User", 
             reason: "Pay for stuff"
         }
@@ -110,6 +113,7 @@ describe("Create Signature", () => {
         const signatures = await Signature.find({})
         const newSignature = { 
             image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABEGWAgAAAQABAAD", 
+            svg: "<svg></svg>",
             signer_name: "Root User", 
             reason: "Exchange stuff",
             category: categoryId
@@ -128,6 +132,27 @@ describe("Create Signature", () => {
         const reasons = savedSignature.map( r => r.reason )
         expect(reasons).toContain(newSignature.reason)
         expect(result.body.category).toBeDefined()
+    })
+
+    test("patch signature succeed", async () => {
+        const signature = new Signature({ 
+            image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAGWEIGHAD",
+            svg: "<svg></svg>", 
+            signer_name: "Root User", 
+            reason: "Bought Stuff",
+            user: userId
+        })
+        
+        await signature.save()
+
+        const result = await api
+            .patch(`/api/signatures/${signature.id}`)
+            .send({ category: categoryId })
+            .set("Authorization", `Bearer ${token}`)
+            .expect(200)
+            .expect("Content-Type", /application\/json/)
+
+            expect(result.body.category.toString()).toEqual(categoryId.toString())
     })
 
     test("modify signature fails", async () => {

@@ -24,7 +24,7 @@ export default function Toast() {
 
     return (
         <Snackbar
-            autoHideDuration={1500}
+            autoHideDuration={2000}
             sx={{ margin: "1rem auto" }}
             anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             open={toast.isOpen}

@@ -9,14 +9,22 @@ import Category from "./Category"
 import EditCategory from "../../EditCategory"
 import AddCategory from "../../AddCategory"
 
-export default function Categories({ setShowSignBoard, setIsOpen, isAddFormOpen, setIsAddFormOpen }) {
+export default function Categories({ 
+    setShowSignBoard, 
+    setIsOpen, 
+    isAddFormOpen, 
+    setIsAddFormOpen,
+    setIsEditSigOpen, 
+    setSelectedSig,
+    selectedCate,
+    setSelectedCate
+}) {
     const { categories, setCategories } = useCategories()
-    const [ selected, setSelected ] = useState(null)
     const [ expanded, setExpanded ] = useState("")
     const [ isEditFormOpen, setIsEditFormOpen ] = useState(false)
 
     return (
-        <Box pb={1} px={2} mb={2} sx={{ overflowY: "auto", maxHeight: "30vh", minHeight: "30vh" }}>   
+        <Box id="categories" pb={1} px={2} mb={2} sx={{ overflowY: "auto", maxHeight: "30vh", minHeight: "30vh" }}>   
             {categories?.length === 0 && <Typography variant="body">No Category</Typography>}
 
             {categories?.map((category, i) => (
@@ -28,9 +36,11 @@ export default function Categories({ setShowSignBoard, setIsOpen, isAddFormOpen,
                     expanded={expanded}
                     setExpanded={setExpanded}
                     setIsEditFormOpen={setIsEditFormOpen}
-                    setSelected={setSelected}
+                    setSelected={setSelectedCate}
                     setShowSignBoard={setShowSignBoard}
                     setIsOpen={setIsOpen}
+                    setIsEditSigOpen={setIsEditSigOpen}
+                    setSelectedSig={setSelectedSig}
                 />
             ))}
 
@@ -41,7 +51,7 @@ export default function Categories({ setShowSignBoard, setIsOpen, isAddFormOpen,
                     setIsEditFormOpen={setIsEditFormOpen} 
                     categories={categories}
                     setCategories={setCategories}
-                    selected={selected}
+                    selected={selectedCate}
                 />
             }
 
