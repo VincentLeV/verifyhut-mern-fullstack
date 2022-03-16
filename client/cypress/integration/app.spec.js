@@ -44,6 +44,7 @@ describe("VerifyHut App", function() {
 
     it("can login", function() {
         cy.log("**Login**")
+        cy.visit("http://localhost:3000")
         cy.get('#login-form input[name="username"]').type("user")
         wait(300)
         cy.get('#login-form input[name="password"]').type("password")
@@ -61,7 +62,7 @@ describe("VerifyHut App", function() {
 
     describe("Category", function() {
         beforeEach(function() {
-            cy.saveToken({ username: "vincentle", password: "password" })
+            cy.saveToken({ username: "user", password: "password" })
             wait(500)
         })
 
@@ -104,7 +105,7 @@ describe("VerifyHut App", function() {
 
     describe("Signature", function() {
         beforeEach(function() {
-            cy.saveToken({ username: "vincentle", password: "password" })
+            cy.saveToken({ username: "user", password: "password" })
             wait(500)
         })
 
