@@ -13,6 +13,7 @@ import Content from "./Content"
 
 export default function Navbar({ setShowSignBoard }) {
     const matches = useMediaQuery("(max-width: 1700px)")
+    const bigScr = useMediaQuery("(min-width: 1701px)")
     const [ isOpen, setIsOpen ] = useState(matches ? false : true)
 
     const handleClickBackDrop = () => {
@@ -25,7 +26,7 @@ export default function Navbar({ setShowSignBoard }) {
                 isOpen &&
                 <Box 
                     position="absolute" 
-                    sx={{ inset: 10 }} 
+                    sx={{ inset: 10, display: bigScr && "none" }} 
                     onClick={handleClickBackDrop}
                     id="navbar-backdrop"
                 />
@@ -43,7 +44,7 @@ export default function Navbar({ setShowSignBoard }) {
                         aria-label="open navbar"
                         onClick={() => setIsOpen(true)}
                         edge="start"
-                        sx={{ ...(isOpen && { display: "none" }), display: !matches && "none" }}
+                        sx={{ ...(isOpen && { display: "none" }), display: bigScr && "none" }}
                     >
                         <MenuIcon color="primary" fontSize="large" />
                     </IconButton>
