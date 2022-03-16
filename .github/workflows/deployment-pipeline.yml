@@ -1,0 +1,81 @@
+name: Deployment Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+  Lint_Build_Test:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: Install Packages
+        working-directory: client
+        run: yarn install
+
+      - name: Linting
+        working-directory: client
+        run: yarn run lint
+
+      - name: Build
+        working-directory: client
+        run: yarn run build
+
+      - name: Run API In The Background
+        working-directory: server
+        run: |
+          npm install
+          npm install cross-env
+          npm run start:test &
+        env:
+          PORT: 5000
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+
+      - name: End to End Testing
+        working-directory: client
+        run: |
+          yarn install
+          yarn build
+          yarn start &
+          yarn test:e2e
+        env:
+          REACT_APP_API_BASE_URL: http://localhost:5000
+
+  Deployment:
+    needs: Lint_Build_Test
+    runs-on: ubuntu-18.04
+    environment: 
+      name: netlify
+      url: https://verifyhut.netlify.app/
+    if: github.event_name == 'push' && !contains(github.event.head_commit.message, '#skip')
+    
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Packages
+        working-directory: client
+        run: yarn install
+
+      - name: Build
+        working-directory: client
+        run: yarn build
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.2
+        with:
+          publish-dir: 'client/build'
+          production-branch: main
+          deploy-message: "Deploy from GitHub Actions"
+          enable-commit-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

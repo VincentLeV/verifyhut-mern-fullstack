@@ -29,7 +29,9 @@ VerifyHut is the app that allows users to create signatures and verify the trans
 - Create/Read/Delete signatures
 - Export signatures to PNG or SVG
 - Session is created for each login, the session expires in 1 hour
-- Cross-functional 
+- Cross-functional
+- If signature is exported right away without saving, the image will contain only the signature
+- If signature is exported after saving, the image will contain all of the related information
 
 ## Tech Stack
 
@@ -44,8 +46,6 @@ VerifyHut is the app that allows users to create signatures and verify the trans
 
 :loudspeaker: For all of the step below: make sure that you're in the project's directory :loudspeaker:
 
-### Using Terminal and VSCode
-
 1. Run the Backend
         
         cd server
@@ -57,12 +57,6 @@ VerifyHut is the app that allows users to create signatures and verify the trans
         yarn start
 
 <p align="center">Check the app out at <a href="http://localhost:3000/" target="_blank">http://localhost:3000/</a></p>
-
-### Using Docker
-
-    ./deploy.ps1
-
-<p align="center">Check the app out at <a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a></p>
 
 ### E2E Testing
 
