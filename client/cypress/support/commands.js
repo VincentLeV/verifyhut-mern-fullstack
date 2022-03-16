@@ -1,3 +1,5 @@
+import { wait } from "@testing-library/user-event/dist/utils"
+
 Cypress.Commands.add( "createUser", ({ username, name, password }) => {
     const user = {
         username: username,
@@ -9,12 +11,14 @@ Cypress.Commands.add( "createUser", ({ username, name, password }) => {
 
 Cypress.Commands.add( "login", ({ username, password }) => {
     cy.request( "POST", "api/login", { username, password }) 
+    wait(500)
 })
 
 Cypress.Commands.add( "saveToken", ({ username, password }) => {
     cy
         .login({ username, password })
         .then(({ body }) => {
+            wait(500)
             window.localStorage.setItem('auth-token', JSON.stringify(body.token))
         })
 })
@@ -23,6 +27,7 @@ Cypress.Commands.add( "createCategory", ({ username, password, name }) => {
     cy
         .login({ username, password })
         .then(({ body }) => {
+            wait(500)
             cy.request({
                 method: "POST",
                 url: "api/categories",
@@ -46,6 +51,7 @@ Cypress.Commands.add( "createSignature", ({
     cy
         .login({ username, password })
         .then(({ body }) => {
+            wait(500)
             cy.request({
                 method: "POST",
                 url: "api/signatures",

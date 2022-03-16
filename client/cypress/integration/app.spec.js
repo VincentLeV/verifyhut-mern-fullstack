@@ -7,18 +7,18 @@ describe("VerifyHut App", function() {
         cy.log("**Create user**")
         cy.createUser({ username: "user", name: "Root User", password: "password" })
         wait(400)
-        cy.log("**Create Category**")
-        cy.createCategory({ username: "user", password: "password", name: "General" })
-        wait(400)
-        cy.log("**Create Signature**")
-        cy.createSignature({ 
-            username: "user", 
-            password: "password",
-            image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD",
-            svg: "<svg></svg>",
-            signer_name: "Vincent Le",
-            reason: "Buy coffee machine"
-        })
+        // cy.log("**Create Category**")
+        // cy.createCategory({ username: "user", password: "password", name: "General" })
+        // wait(400)
+        // cy.log("**Create Signature**")
+        // cy.createSignature({ 
+        //     username: "user", 
+        //     password: "password",
+        //     image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD",
+        //     svg: "<svg></svg>",
+        //     signer_name: "Vincent Le",
+        //     reason: "Buy coffee machine"
+        // })
         wait(400)
         cy.visit("http://localhost:3000")
     })
