@@ -57,7 +57,9 @@ export default function Main() {
 
     useEffect(() => {
         checkLogin()
-        return () => checkLogin()
+        return () => {
+            setLoading(false)
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
