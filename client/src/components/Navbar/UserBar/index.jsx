@@ -22,12 +22,12 @@ export default function UserBar() {
     const handleLogout = () => {
         setUser({ isLoggedIn: false, token: null })
         setCategories([])
-        navigate("/")
         setToast({ 
             isOpen: true, 
             msg: "Logout successfully. See you again!", 
             severity: "success" 
         })
+        navigate("/")
         localStorage.clear()
     }
 
@@ -47,6 +47,7 @@ export default function UserBar() {
                 size="small" 
                 color="primary"
                 onClick={handleLogout}
+                id="logout-btn"
             >
                 <Tooltip title="Logout">
                     <LogoutIcon onClick={handleLogout} sx={{ margin: "0 0.3rem" }} />
