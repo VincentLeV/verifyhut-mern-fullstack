@@ -12,12 +12,12 @@ export default function SignBoard() {
     const [ initialVal, setInitialVal ] = useState({ image: "", svg: "", createdAt: "" })
 
     return (
-        <Stack alignItems="center" pt={7} m={0} id="signboard">
+        <Stack id="signboard" alignItems="center" pt={7} m={0} sx={{ marginLeft: { lg: "14vw" } }}>
             <Typography 
                 variant="h5" 
                 fontWeight="bold"
                 color="primary"
-                sx={{ marginLeft: 0, marginBottom: "2rem" }}
+                sx={{ margin: "1rem 0 2rem 0" }}
             >
                 Sign Here
             </Typography>
@@ -27,7 +27,7 @@ export default function SignBoard() {
                     // borderColor: blue[800],
                     borderRadius: "0.25rem", 
                     height: "58vh", 
-                    width: { sm: "100%", lg: "50vw" }, 
+                    width: { xs: "100%", sm: "90%", lg: "50vw" }, 
                     margin: { sm: "auto", lg: "0" },
                 }}
             > 

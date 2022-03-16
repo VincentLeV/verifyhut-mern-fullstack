@@ -12,9 +12,8 @@ import useMediaQuery from "@mui/material/useMediaQuery"
 import Content from "./Content"
 
 export default function Navbar({ setShowSignBoard }) {
-    const matches = useMediaQuery("(max-width: 1700px)")
     const bigScr = useMediaQuery("(min-width: 1701px)")
-    const [ isOpen, setIsOpen ] = useState(matches ? false : true)
+    const [ isOpen, setIsOpen ] = useState(false)
 
     const handleClickBackDrop = () => {
         setIsOpen(false)
