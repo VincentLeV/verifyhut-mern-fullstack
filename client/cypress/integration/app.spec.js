@@ -43,45 +43,47 @@ describe("VerifyHut App", function() {
         })
     })
 
-    it("can login", function() {
-        wait(1000)
-        cy.log("**Login**")
-        cy.get('#login-form input[name="username"]').type("user")
-        wait(500)
-        cy.get('#login-form input[name="password"]').type("password")
-        wait(500)
-        cy.get("#login-btn").click()
-        wait(1500)
-        cy.location().should(loc => {
-            expect(loc.pathname).to.eq("/home")
+    // it("can login", function() {
+    //     wait(1000)
+    //     cy.log("**Login**")
+    //     cy.get('#login-form input[name="username"]').type("user")
+    //     wait(500)
+    //     cy.get('#login-form input[name="password"]').type("password")
+    //     wait(500)
+    //     cy.get("#login-btn").click()
+    //     wait(2000)
+    //     cy.location().should(loc => {
+    //         expect(loc.pathname).to.eq("/home")
+    //     })
+    //     wait(500)
+    //     cy.contains("Sign Here")
+    //     cy.contains("Root User")
+    //     cy.contains("No Category")
+    //     cy.contains("No Uncategorized Signature")
+    // })
+
+    describe("Category", function() {
+        beforeEach(function() {
+            cy.log("**Login**")
+            cy.get('#login-form input[name="username"]').type("user")
+            wait(500)
+            cy.get('#login-form input[name="password"]').type("password")
+            wait(500)
+            cy.get("#login-btn").click()
+            wait(2000)
+            cy.saveToken({ username: "user", password: "password" })
+            wait(500)
         })
-        wait(500)
-        cy.contains("Sign Here")
-        cy.contains("Root User")
-        cy.contains("No Category")
-        cy.contains("No Uncategorized Signature")
-    })
 
-    // describe("Category", function() {
-    //     beforeEach(function() {
-    //         cy.saveToken({ username: "user", password: "password" })
-    //         wait(500)
-    //     })
-
-    //     it("can add category", function() {
-    //         cy.get("#add-category-btn").click()
-    //         cy.get('#add-category-form input[name="name"]').type("Stuff")
-    //         wait(300)
-    //         cy.get("#add-category-form #add-category-btn").click()
-    //         cy.contains("Successfully created category!")
-
-    //         cy.get("#add-category-btn").click()
-    //         wait(300)
-    //         cy.get('#add-category-form input[name="name"]').type("Misc")
-    //         wait(300)
-    //         cy.get("#add-category-form #add-category-btn").click()
-    //         cy.contains("Successfully created category!")
-    //     })
+        it("can add category", function() {
+            wait(1000)
+            
+            cy.get("#add-category-btn").click()
+            cy.get('#add-category-form input[name="name"]').type("Stuff")
+            wait(300)
+            cy.get("#add-category-form #add-category-btn").click()
+            cy.contains("Successfully created category!")
+        })
     
     //     it("can edit category", function() {
     //         cy.get("#categories").children().eq(0).click()
@@ -103,7 +105,7 @@ describe("VerifyHut App", function() {
     //         cy.get("#categories").should('have.length', 1)
     //         cy.contains("Successfully deleted category!")
     //     })
-    // })
+    })
 
     // describe("Signature", function() {
     //     beforeEach(function() {
