@@ -21,7 +21,7 @@ describe("VerifyHut App", function() {
         //     reason: "Buy coffee machine"
         // })
         cy.visit("http://localhost:3000")
-        wait(1000)
+        wait(1200)
     })
 
     it("front page can be opened", function() {
@@ -44,17 +44,18 @@ describe("VerifyHut App", function() {
     })
 
     it("can login", function() {
-        cy.log("**Login**")
-        cy.visit("http://localhost:3000")
-        cy.get('#login-form input[name="username"]').type("user")
-        wait(300)
-        cy.get('#login-form input[name="password"]').type("password")
-        wait(300)
-        cy.get("#login-btn").click()
         wait(1000)
+        cy.log("**Login**")
+        cy.get('#login-form input[name="username"]').type("user")
+        wait(500)
+        cy.get('#login-form input[name="password"]').type("password")
+        wait(500)
+        cy.get("#login-btn").click()
+        wait(1500)
         cy.location().should(loc => {
             expect(loc.pathname).to.eq("/home")
         })
+        wait(500)
         cy.contains("Sign Here")
         cy.contains("Root User")
         cy.contains("No Category")
