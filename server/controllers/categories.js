@@ -49,20 +49,21 @@ categoryRouter.put("/:id", tokenExtractor, async (req, res, next) => {
 })
 
 categoryRouter.delete("/:id", tokenExtractor, async (req, res, next) => {
-    const user = await User.findById(req.decodedToken.id)
-    if (!user) return next(new Error("not found"))
     const category = await Category.findById(req.params.id)
     if (!category) return next(new Error("not found"))
 
     if (category.user.toString() === req.decodedToken.id) {
-        Category.findOneAndUpdate({ id: req.params.id }, { $set : { signatures : [] } }, (_, cate) => {
+        const user = await User.findById(req.decodedToken.id)
+        if (!user) return next(new Error("not found"))
+
+        Category.findOneAndUpdate({ id: req.params.id }, { $set : { signatures : [] } }, () => {
             Signature.deleteMany({
                 "_id": {
-                    $in: cate.signatures
+                    $in: category.signatures
                 }
             }, function(err) {
                 if(err) return next(err)
-                cate.deleteOne()
+                category.deleteOne()
             })
         })
 
