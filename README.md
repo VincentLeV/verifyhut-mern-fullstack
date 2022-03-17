@@ -20,7 +20,7 @@
 [Demo](#demo)
 
 ## Introduction
-VerifyHut is the app that allows users to create signatures and verify the transactions if necessary in their daily lives. Among the daily activities, sometimes we need to ask for the counterpart's signature just to make sure. For example, this app would be useful when selling and buying second-handed stuff online.
+VerifyHut is a Progressive Web App (PWA) that allows users to create signatures and verify the transactions if necessary in their daily lives. Among the daily activities, sometimes we need to ask for the counterpart's signature just to make sure. For example, this app would be useful when selling and buying second-handed stuff online. The app could be installed in the computer and used like a native app.
 
 ## Features
 - Create/Read/Delete users
