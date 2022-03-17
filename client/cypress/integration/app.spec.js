@@ -62,28 +62,28 @@ describe("VerifyHut App", function() {
     //     cy.contains("No Uncategorized Signature")
     // })
 
-    describe("Category", function() {
-        beforeEach(function() {
-            cy.log("**Login**")
-            cy.get('#login-form input[name="username"]').type("user")
-            wait(500)
-            cy.get('#login-form input[name="password"]').type("password")
-            wait(500)
-            cy.get("#login-btn").click()
-            wait(2000)
-            cy.saveToken({ username: "user", password: "password" })
-            wait(500)
-        })
+    // describe("Category", function() {
+    //     beforeEach(function() {
+    //         cy.log("**Login**")
+    //         cy.get('#login-form input[name="username"]').type("user")
+    //         wait(500)
+    //         cy.get('#login-form input[name="password"]').type("password")
+    //         wait(500)
+    //         cy.get("#login-btn").click()
+    //         wait(2000)
+    //         cy.saveToken({ username: "user", password: "password" })
+    //         wait(500)
+    //     })
 
-        it("can add category", function() {
-            wait(1000)
+    //     it("can add category", function() {
+    //         wait(1000)
             
-            cy.get("#add-category-btn").click()
-            cy.get('#add-category-form input[name="name"]').type("Stuff")
-            wait(300)
-            cy.get("#add-category-form #add-category-btn").click()
-            cy.contains("Successfully created category!")
-        })
+    //         cy.get("#add-category-btn").click()
+    //         cy.get('#add-category-form input[name="name"]').type("Stuff")
+    //         wait(300)
+    //         cy.get("#add-category-form #add-category-btn").click()
+    //         cy.contains("Successfully created category!")
+    //     })
     
     //     it("can edit category", function() {
     //         cy.get("#categories").children().eq(0).click()
@@ -105,7 +105,7 @@ describe("VerifyHut App", function() {
     //         cy.get("#categories").should('have.length', 1)
     //         cy.contains("Successfully deleted category!")
     //     })
-    })
+    // })
 
     // describe("Signature", function() {
     //     beforeEach(function() {
