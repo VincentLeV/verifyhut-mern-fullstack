@@ -43,24 +43,24 @@ describe("VerifyHut App", function() {
         })
     })
 
-    it("can login", function() {
-        wait(1000)
-        cy.log("**Login**")
-        cy.get('#login-form input[name="username"]').type("user")
-        wait(500)
-        cy.get('#login-form input[name="password"]').type("password")
-        wait(500)
-        cy.get("#login-btn").click()
-        wait(2000)
-        cy.location().should(loc => {
-            expect(loc.pathname).to.eq("/home")
-        })
-        wait(500)
-        cy.contains("Sign Here")
-        cy.contains("Root User")
-        cy.contains("No Category")
-        cy.contains("No Uncategorized Signature")
-    })
+    // it("can login", function() {
+    //     wait(1000)
+    //     cy.log("**Login**")
+    //     cy.get('#login-form input[name="username"]').type("user")
+    //     wait(500)
+    //     cy.get('#login-form input[name="password"]').type("password")
+    //     wait(500)
+    //     cy.get("#login-btn").click()
+    //     wait(2000)
+    //     cy.location().should(loc => {
+    //         expect(loc.pathname).to.eq("/home")
+    //     })
+    //     wait(500)
+    //     cy.contains("Sign Here")
+    //     cy.contains("Root User")
+    //     cy.contains("No Category")
+    //     cy.contains("No Uncategorized Signature")
+    // })
 
     // describe("Category", function() {
     //     beforeEach(function() {
