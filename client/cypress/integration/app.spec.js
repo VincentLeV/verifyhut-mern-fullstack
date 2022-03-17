@@ -30,36 +30,36 @@ describe("VerifyHut App", function() {
         wait(200)
     })
 
-    // it("can create user", function() {
-    //     cy.log("**Create User**")
-    //     cy.get("#create-user-link").click()
-    //     cy.get('#signup-form input[name="name"]').type("Vincent Le")
-    //     cy.get('#signup-form input[name="username"]').type("vincentle")
-    //     cy.get('#signup-form input[name="password"]').type("password")
-    //     cy.get("#signup-btn").click()
-    //     wait(500)
-    //     cy.location().should(loc => {
-    //         expect(loc.pathname).to.eq("/")
-    //     })
-    // })
+    it("can create user", function() {
+        cy.log("**Create User**")
+        cy.get("#create-user-link").click()
+        cy.get('#signup-form input[name="name"]').type("Vincent Le")
+        cy.get('#signup-form input[name="username"]').type("vincentle")
+        cy.get('#signup-form input[name="password"]').type("password")
+        cy.get("#signup-btn").click()
+        wait(500)
+        cy.location().should(loc => {
+            expect(loc.pathname).to.eq("/")
+        })
+    })
 
-    // it("can login", function() {
-    //     cy.log("**Login**")
-    //     cy.visit("http://localhost:3000")
-    //     cy.get('#login-form input[name="username"]').type("user")
-    //     wait(300)
-    //     cy.get('#login-form input[name="password"]').type("password")
-    //     wait(300)
-    //     cy.get("#login-btn").click()
-    //     wait(1000)
-    //     cy.location().should(loc => {
-    //         expect(loc.pathname).to.eq("/home")
-    //     })
-    //     cy.contains("Sign Here")
-    //     cy.contains("Root User")
-    //     cy.contains("No Category")
-    //     cy.contains("No Uncategorized Signature")
-    // })
+    it("can login", function() {
+        cy.log("**Login**")
+        cy.visit("http://localhost:3000")
+        cy.get('#login-form input[name="username"]').type("user")
+        wait(300)
+        cy.get('#login-form input[name="password"]').type("password")
+        wait(300)
+        cy.get("#login-btn").click()
+        wait(1000)
+        cy.location().should(loc => {
+            expect(loc.pathname).to.eq("/home")
+        })
+        cy.contains("Sign Here")
+        cy.contains("Root User")
+        cy.contains("No Category")
+        cy.contains("No Uncategorized Signature")
+    })
 
     // describe("Category", function() {
     //     beforeEach(function() {

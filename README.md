@@ -26,7 +26,8 @@ VerifyHut is the app that allows users to create signatures and verify the trans
 - Create/Read/Delete users
 - Create/Read/Update/Delete categories
 - Signature is created on a sign board, can be cleared, undo or redo
-- Create/Read/Delete signatures
+- Create/Read/Update/Delete signatures
+- Only signature's category can be updated
 - Export signatures to PNG or SVG
 - Session is created for each login, the session expires in 1 hour
 - Cross-functional

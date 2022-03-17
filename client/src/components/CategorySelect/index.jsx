@@ -21,7 +21,8 @@ export default function CategorySelect({ categories, category, setCategory, from
                 onChange={handleChange}
                 sx={{ minWidth: 240 }}
             >
-                { fromCategory && <MenuItem id={"option-none"} value="" sx={{ height: "2.5rem" }}>None</MenuItem> }
+                <MenuItem id={"option-none"} value="" sx={{ height: "2.5rem" }}>None</MenuItem>
+                {/* { fromCategory && <MenuItem id={"option-none"} value="" sx={{ height: "2.5rem" }}>None</MenuItem> } */}
                 {
                     fromCategory 
                         ? categories

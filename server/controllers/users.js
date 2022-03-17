@@ -1,4 +1,3 @@
-const jwt = require( "jsonwebtoken" )
 const userRouter = require( "express" ).Router()
 const User = require( "../models/user" )
 const { successHandler, tokenExtractor } = require("../middleware")
@@ -6,12 +5,12 @@ const { encryptPassword } = require("../utils/helpers")
 
 userRouter.get("/", async (_, res) => {
     const users = await User.find({}).populate("categories").populate("signatures")
-    successHandler(res, users, 200)
+    return successHandler(res, users, 200)
 })
 
 userRouter.get("/:id", async (req, res, next) => {
     const user = await User.findById(req.params.id).populate("categories").populate("signatures")
-    user ? successHandler(res, user, 200) : next(new Error("not found"))
+    return user ? successHandler(res, user, 200) : next(new Error("not found"))
 })
 
 userRouter.post("/", async (req, res, next) => {
@@ -26,7 +25,7 @@ userRouter.post("/", async (req, res, next) => {
     })
 
     const savedUser = await user.save()
-    savedUser ? successHandler(res, savedUser, 201) : next(new Error("can't save to db")) 
+    return savedUser ? successHandler(res, savedUser, 201) : next(new Error("can't save to db")) 
 })
 
 userRouter.put("/:id", tokenExtractor, async (req, res, next) => {
@@ -34,7 +33,7 @@ userRouter.put("/:id", tokenExtractor, async (req, res, next) => {
     if (!user) return next(new Error("not found")) 
 
     if (req.decodedToken.id !== user.id) {
-        next()
+        return next()
     }
 
     let savedUser
@@ -59,12 +58,12 @@ userRouter.put("/:id", tokenExtractor, async (req, res, next) => {
         savedUser = await User.findByIdAndUpdate( req.params.id, newUser, { new: true } )
     }
 
-    savedUser ? successHandler(res, savedUser, 200) : next(new Error("can't save to db"))
+    return savedUser ? successHandler(res, savedUser, 200) : next(new Error("can't save to db"))
 })
 
 userRouter.delete("/:id", async (req, res, next) => {
     const user = await User.findByIdAndRemove(req.params.id)
-    user ? successHandler(res, user, 204) : next(new Error("not found")) 
+    return user ? successHandler(res, user, 204) : next(new Error("not found")) 
 })
 
 module.exports = userRouter

@@ -3,28 +3,28 @@ const Signature = require( "../models/signature" )
 const User = require("../models/user")
 const Category = require("../models/category")
 const { successHandler, tokenExtractor } = require("../middleware")
-const signature = require("../models/signature")
 
 signatureRouter.get("/", async (_, res) => {
     const signatures = await Signature.find({})
-    successHandler(res, signatures, 200)
+    return successHandler(res, signatures, 200)
 })
 
 signatureRouter.get("/uncategorized/user/:id", async (req, res) => {
     const signatures = await Signature.find({ category: undefined, user: req.params.id })
-    successHandler(res, signatures, 200)
+    return successHandler(res, signatures, 200)
 })
 
 signatureRouter.get("/:id", async (req, res, next) => {
     const signature = await Signature.findById(req.params.id)
-    signature ? successHandler(res, signature, 200) : next(new Error("not found"))
+    return signature ? successHandler(res, signature, 200) : next(new Error("not found"))
 })
 
 signatureRouter.post("/", tokenExtractor, async (req, res, next) => {
     const user = await User.findById( req.decodedToken.id )
-    if (!user) next(new Error("not found"))
+    if (!user) return next(new Error("not found"))
 
     let category
+    let savedSignature
     const signature = new Signature({ 
         image: req.body.image,
         svg: req.body.svg,
@@ -35,27 +35,25 @@ signatureRouter.post("/", tokenExtractor, async (req, res, next) => {
 
     if (req.body.category) {
         category = await Category.findById(req.body.category)
-        if (!category) next(new Error("not found"))
+        if (!category) return next(new Error("not found"))
         signature.category = category.id
-    }
-
-    const savedSignature = await signature.save()
-    user.signatures = await user.signatures.concat(savedSignature._id)
-    await user.save({ validateModifiedOnly: true })
-
-    if (req.body.category) {
+        savedSignature = await signature.save()
         category.signatures = await category.signatures.concat(savedSignature._id)
         await category.save({ validateModifiedOnly: true })
+    } else if (!req.body.category) {
+        savedSignature = await signature.save()
+        user.signatures = await user.signatures.concat(savedSignature._id)
+        await user.save({ validateModifiedOnly: true })
     }
-    
-    savedSignature ? successHandler(res, savedSignature, 201) : next(new Error("can't save to db")) 
+
+    return savedSignature ? successHandler(res, savedSignature, 201) : next(new Error("can't save to db")) 
 })
 
 signatureRouter.patch("/:id", tokenExtractor, async (req, res, next) => {
     const user = await User.findById(req.decodedToken.id)
-    if (!user) next(new Error("not found"))
+    if (!user) return next(new Error("not found"))
     const signature = await Signature.findById(req.params.id)
-    if (!signature) next(new Error("not found"))
+    if (!signature) return next(new Error("not found"))
 
     const { category, fromCategory, ...others } = req.body
 
@@ -69,19 +67,19 @@ signatureRouter.patch("/:id", tokenExtractor, async (req, res, next) => {
     if (signature.user.toString() === req.decodedToken.id) {
         if (!fromCategory && category) {
             const categoryFromDB = await Category.findById(req.body.category)
-            if (!categoryFromDB) next(new Error("not found"))
+            if (!categoryFromDB) return next(new Error("not found"))
 
             signature.category = req.body.category
             const updatedSignature = await Signature.findByIdAndUpdate( req.params.id, signature, { new: true } )
 
             categoryFromDB.signatures = await categoryFromDB.signatures.concat(updatedSignature.id)
             const updatedCategory = await categoryFromDB.save({ validateModifiedOnly: true })
-            if (!updatedCategory) next(new Error("can't save to db"))
+            if (!updatedCategory) return next(new Error("can't save to db"))
 
-            updatedSignature ? successHandler(res, updatedSignature, 200) : next(new Error("can't save to db"))
+            return updatedSignature ? successHandler(res, updatedSignature, 200) : next(new Error("can't save to db"))
         } else if (fromCategory && !category) {
             const categoryFromDB = await Category.findById(req.body.fromCategory)
-            if (!categoryFromDB) next(new Error("not found"))
+            if (!categoryFromDB) return next(new Error("not found"))
 
             signature.category = undefined
             const updatedSignature = await signature.save()
@@ -89,14 +87,14 @@ signatureRouter.patch("/:id", tokenExtractor, async (req, res, next) => {
             const index = categoryFromDB.signatures.findIndex(x => x.id === signature.id)
             categoryFromDB.signatures.splice(index, 1)
             const updatedCategory = await categoryFromDB.save({ validateModifiedOnly: true })
-            if (!updatedCategory) next(new Error("can't save to db"))
+            if (!updatedCategory) return next(new Error("can't save to db"))
 
-            updatedSignature ? successHandler(res, signature, 200) : next(new Error("can't save to db"))
+            return updatedSignature ? successHandler(res, signature, 200) : next(new Error("can't save to db"))
         } else if (fromCategory && category) {
             const fromCategoryFromDB = await Category.findById(req.body.fromCategory)
             const toCategoryFromDB = await Category.findById(req.body.category)
-            if (!fromCategoryFromDB) next(new Error("not found"))
-            if (!toCategoryFromDB) next(new Error("not found"))
+            if (!fromCategoryFromDB) return next(new Error("not found"))
+            if (!toCategoryFromDB) return next(new Error("not found"))
 
             const index = fromCategoryFromDB.signatures.findIndex(x => x.id === signature.id)
             fromCategoryFromDB.signatures.splice(index, 1)
@@ -105,21 +103,21 @@ signatureRouter.patch("/:id", tokenExtractor, async (req, res, next) => {
             const updatedTCategory = await toCategoryFromDB.save({ validateModifiedOnly: true })
             if (!updatedFCategory) next(new Error("can't save to db"))
 
-            updatedTCategory ? successHandler(res, updatedTCategory, 200) : next(new Error("can't save to db"))
+            return updatedTCategory ? successHandler(res, updatedTCategory, 200) : next(new Error("can't save to db"))
         }
     } else {
-        next(new Error("invalid user"))
+        return next(new Error("invalid user"))
     }
 })
 
 signatureRouter.delete("/:id", tokenExtractor, async (req, res, next) => {
     const user = await User.findById(req.decodedToken.id)
     const signature = await Signature.findById(req.params.id)
-    if (!signature) next(new Error("not found"))
+    if (!signature) return next(new Error("not found"))
     const category = await Category.findById(signature.category)
 
     if (signature.user.toString() === req.decodedToken.id && category) {
-        if (!category) next(new Error("not found"))
+        if (!category) return next(new Error("not found"))
         await Signature.findByIdAndRemove(req.params.id)
         const userIndex = user.signatures.indexOf(req.params.id)
         const categoryIndex = category.signatures.indexOf(req.params.id)

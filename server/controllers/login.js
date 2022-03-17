@@ -5,14 +5,13 @@ const User = require( "../models/user" )
 const { successHandler } = require("../middleware")
 const { SECRET } = require("../utils/config")
 
-loginRouter.post("/", async (req, res) => {
+loginRouter.post("/", async (req, res, next) => {
     const user = await User.findOne({ username: req.body.username })
+    const isCorrectPassword = await bcrypt.compare( req.body.password, user.passwordHash )
 
-    const passwordCorrect = user === null
-        ? false
-        : await bcrypt.compare( req.body.password, user.passwordHash )
-
-    if (!passwordCorrect) return res.status( 401 ).json({ message: "Invalid username or password" })
+    if (user === null || !isCorrectPassword) {
+        return next(new Error("unauthorized"))
+    } 
 
     const userForToken = {
         username: user.username,
@@ -21,7 +20,7 @@ loginRouter.post("/", async (req, res) => {
 
     const token = jwt.sign( userForToken, SECRET, { expiresIn: "1h" } )
     // const token = jwt.sign(userForToken, SECRET)
-    successHandler(res, { token, username: user.username, name: user.name }, 200)
+    return successHandler(res, { token, username: user.username, name: user.name }, 200)
 })
 
 module.exports = loginRouter
