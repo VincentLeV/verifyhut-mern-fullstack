@@ -71,11 +71,11 @@ export default function Signature({ setShowSignBoard }) {
     }
 
     return (
-        <Stack alignItems="center" justifyContent="center" sx={{ height: "90vh" }} mt={!signature && 10}>
+        <Stack alignItems="center" justifyContent="center" sx={{ height: "100vh" }} mt={!signature && 10}>
             <Button
                 variant="outlined" 
                 onClick={() => setShowSignBoard(true)} 
-                sx={{ marginBottom: "1rem" }}
+                sx={{ marginBottom: "1.5rem" }}
             >
                 Start Signing
             </Button>
@@ -90,8 +90,8 @@ export default function Signature({ setShowSignBoard }) {
                         sx={{ cursor: "pointer" }}
                     >
                         <Box 
-                            pt={0.4}
-                            px={0.4}
+                            pt={0.3}
+                            px={0.3}
                             width={20}
                             border="1px solid"
                             borderRadius="4px"
@@ -106,7 +106,7 @@ export default function Signature({ setShowSignBoard }) {
                     <CardMedia
                         component="img"
                         alt="Signature"
-                        height="200"
+                        height="170"
                         sx={{ objectFit: "contain" }}
                         image={signature && Buffer.from(signature?.image, "base64").toString()}
                     />
@@ -122,7 +122,7 @@ export default function Signature({ setShowSignBoard }) {
                         <Typography variant="body2" color="text.secondary" mb={1}>
                             {moment(signature.createdAt).format("DD-MM-YYYY hh:mm A")}
                         </Typography>
-                        <Typography gutterBottom variant="h5" component="div">
+                        <Typography gutterBottom variant="h6" component="div">
                             {signature.signer_name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
