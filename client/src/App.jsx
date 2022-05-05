@@ -20,22 +20,22 @@ function App() {
     return (
         <Router>
             <UserProvider>
-                <ToastProvider>
-                    <AlertProvider>
-                        <CategoryProvider>
-                            <SignatureProvider>
-                                <Routes>
-                                    <Route path="*" element={<Onboarding />} />
-                                    <Route path="/" element={<Onboarding />} />
-                                    <Route path="/home" element={<Main />} />
-                                </Routes>            
-                
-                                <Toast />
-                                <Alert />
-                            </SignatureProvider>
-                        </CategoryProvider>
-                    </AlertProvider>
-                </ToastProvider>
+            <ToastProvider>
+            <AlertProvider>
+            <CategoryProvider>
+            <SignatureProvider>
+                <Routes>
+                    <Route path="*" element={<Onboarding />} />
+                    <Route path="/" element={<Onboarding />} />
+                    <Route path="/home" element={<Main />} />
+                </Routes>            
+
+                <Toast />
+                <Alert />
+            </SignatureProvider>
+            </CategoryProvider>
+            </AlertProvider>
+            </ToastProvider>
             </UserProvider>
         </Router>
     )
