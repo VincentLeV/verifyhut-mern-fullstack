@@ -23,6 +23,7 @@ export default function ToolBar({ canvas, setIsAddFormOpen, setInitialVal }) {
     const openAddSignatureDialog = async () => {
         const signTimestamps = Date.now()
         const png = await canvas.current.exportImage("png")
+        console.log(png)
         const svg = await canvas.current.exportSvg()
         setInitialVal({ image: png, svg: svg, createdAt: signTimestamps })
         setIsAddFormOpen(true)

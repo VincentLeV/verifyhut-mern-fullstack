@@ -41,7 +41,7 @@ export default function Signature({ setShowSignBoard }) {
                 setSigHeight(i.height)
             }
         }
-        
+        console.log(signature?.image)
     }, [signature])
 
     const handleDeleteSignature = async (e) => {
