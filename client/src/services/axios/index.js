@@ -19,7 +19,7 @@ import {
 } from "./signature"
 import { login } from "./authentication"
 
-export const baseUrl = process.env.REACT_APP_API_BASE_URL || "https://verifyhut-mern-fullstack.herokuapp.com"
+export const baseUrl = process.env.REACT_APP_API_BASE_URL || "https://verifyhut-mern-fullstack.deta.dev"
 
 const Axios = {
     login,
