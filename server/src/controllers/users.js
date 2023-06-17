@@ -1,7 +1,7 @@
 const userRouter = require( "express" ).Router()
 const User = require( "../models/user" )
-const { successHandler, tokenExtractor } = require("../middleware")
-const { encryptPassword } = require("../utils/helpers")
+const { successHandler, tokenExtractor } = require("../../middleware")
+const { encryptPassword } = require("../../utils/helpers")
 
 userRouter.get("/", async (_, res) => {
     const users = await User.find({}).populate("categories").populate("signatures")
