@@ -7,7 +7,7 @@ const {
     requestLogger,
     errorHandler,
     unknownEndpoint 
-} = require( "./middleware" )
+} = require("./middleware")
 const logger = require( "./utils/logger" )
 const mongoose = require( "mongoose" )
 const userRouter = require( "./controllers/users" )
