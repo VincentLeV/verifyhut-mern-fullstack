@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { Buffer } from "buffer"
-import { 
-    Stack, 
-    Button, 
+import {
+    Stack,
+    Button,
     Typography,
     Card,
     CardMedia,
@@ -29,8 +29,8 @@ export default function Signature({ setShowSignBoard }) {
     const { category, categories, setCategories } = useCategories()
     const { isConfirmed } = useAlert()
     const { setToast } = useToast()
-    const [ infoBase64, setInfoBase64 ] = useState("")
-    const [ sigHeight, setSigHeight ] = useState(0)
+    const [infoBase64, setInfoBase64] = useState("")
+    const [sigHeight, setSigHeight] = useState(0)
 
     useEffect(() => {
         if (signature?.image) {
@@ -41,13 +41,12 @@ export default function Signature({ setShowSignBoard }) {
                 setSigHeight(i.height)
             }
         }
-        console.log(signature?.image)
     }, [signature])
 
     const handleDeleteSignature = async (e) => {
         e.preventDefault()
-        const confirmed = await isConfirmed( 
-            "Delete Signature", 
+        const confirmed = await isConfirmed(
+            "Delete Signature",
             `Do you really want to delete signature signed by ${signature?.signer_name}?`
         )
         if (confirmed) {
@@ -57,7 +56,7 @@ export default function Signature({ setShowSignBoard }) {
                 if (category) {
                     const categorySignatures = category?.signatures.filter(x => x.id !== signature.id)
                     const newCategory = { ...category, signatures: categorySignatures }
-                    const temp = [ ...categories.filter(x => x.id !== category.id), newCategory ]
+                    const temp = [...categories.filter(x => x.id !== category.id), newCategory]
                     setCategories(temp)
                 } else {
                     setUncategorized(uncategorized.filter(x => x.id !== signature.id))
@@ -67,14 +66,14 @@ export default function Signature({ setShowSignBoard }) {
             } catch (err) {
                 setToast({ isOpen: true, msg: err?.response?.data?.message, severity: "error" })
             }
-        } 
+        }
     }
 
     return (
         <Stack alignItems="center" justifyContent="center" sx={{ height: "100vh" }} mt={!signature && 10}>
             <Button
-                variant="outlined" 
-                onClick={() => setShowSignBoard(true)} 
+                variant="outlined"
+                onClick={() => setShowSignBoard(true)}
                 sx={{ marginBottom: "1.5rem" }}
             >
                 Start Signing
@@ -83,13 +82,13 @@ export default function Signature({ setShowSignBoard }) {
             {
                 signature &&
                 <Card sx={{ maxWidth: 345, width: 345 }}>
-                    <Stack 
+                    <Stack
                         py={2}
                         px={2}
                         alignItems="flex-end"
                         sx={{ cursor: "pointer" }}
                     >
-                        <Box 
+                        <Box
                             pt={0.3}
                             px={0.3}
                             width={20}
@@ -111,10 +110,10 @@ export default function Signature({ setShowSignBoard }) {
                         image={signature && Buffer.from(signature?.image, "base64").toString()}
                     />
                     <CardContent>
-                        <InfoCanvas 
+                        <InfoCanvas
                             sigHeight={sigHeight}
-                            signerName={signature.signer_name} 
-                            createdAt={moment(signature.createdAt).format("DD-MM-YYYY hh:mm A")} 
+                            signerName={signature.signer_name}
+                            createdAt={moment(signature.createdAt).format("DD-MM-YYYY hh:mm A")}
                             reason={signature.reason}
                             setInfoBase64={setInfoBase64}
                         />
@@ -130,7 +129,7 @@ export default function Signature({ setShowSignBoard }) {
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <ActionBar 
+                        <ActionBar
                             image={Buffer.from(signature?.image, "base64").toString()}
                             svg={signature?.svg}
                             infoBase64={infoBase64}
